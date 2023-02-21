@@ -6,6 +6,8 @@ use App\Entity\Subscriptions;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class SubscriptionFormType extends AbstractType
 {
@@ -14,24 +16,46 @@ class SubscriptionFormType extends AbstractType
         $builder
             ->add('planTitle')
             ->add('time')
-            ->add('monthDay')
+            ->add('monthDay', ChoiceType::class, [
+                'choices'  => [
+                    'Days' => 'Days',
+                    'Months' => 'Months'                  
+                ]
+             ])
             ->add('noOfClients')
             ->add('noOfClientsLogin')
             ->add('noOfEmployee')
             ->add('noOfTransaction')
             ->add('storageSize')
             ->add('price')
-            ->add('displayOnPortal')
-            ->add('taskManager')
-            ->add('fileManager')
-            ->add('clientLoginApp')
-            ->add('eCommerce')
-            ->add('templateCustomization')
-            ->add('liveReportClientMobileApp')
-            ->add('status')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('deletedAt')
+            ->add('displayOnPortal' , CheckboxType::class, [                
+                'required' => true
+            ])
+            ->add('taskManager', CheckboxType::class, [                
+                'required' => true
+            ])
+            ->add('fileManager', CheckboxType::class, [                
+                'required' => true
+            ])
+            ->add('clientLoginApp', CheckboxType::class, [                
+                'required' => true
+            ])
+            ->add('eCommerce', CheckboxType::class, [                
+                'required' => true
+            ])
+            ->add('templateCustomization', CheckboxType::class, [                
+                'required' => true
+            ])
+            ->add('liveReportClientMobileApp', CheckboxType::class, [                
+                'required' => true
+            ])
+            ->add('status', ChoiceType::class, [
+                'choices'  => [
+                    'Active' => 'Active',
+                    'Inactive' => 'Inactive'                  
+                ]
+             ])
+           
         ;
     }
 

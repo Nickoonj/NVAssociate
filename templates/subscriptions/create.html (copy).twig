@@ -21,24 +21,29 @@
                   <label class="form-label" style="min-width:180px;" for="">Subscription Plan Name</label>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
-                  {{ form_widget(form.planTitle, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <input class="form-control mb-3" id="" type="text" placeholder="">
                 </div>
               </div>
               <div class="row">
                 <div class="col-auto">
                   <label class="form-label" style="min-width:180px;" for="">Period</label>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4">                  
+                <div class="col-12 col-sm-4 col-md-4">
                   <div class="row">
                     <div class="col">
-                      {{ form_widget(form.time, {'attr': {'class': 'form-control mb-3'}}) }}
+                      <input class="form-control mb-3" id="" type="text" placeholder="">
                     </div>
                     <div class="col-auto">
                       <div class="mb-3" style="min-width:130px;">
-                       {{ form_widget(form.monthDay, {'attr': {'class': 'form-control mb-3'}}) }}
+                        <select class="form-select js-choice" size="1" name="" data-options='{"removeItemButton":false,"placeholder":true}'>
+                          <option value="">- Select -</option>
+                          <option value="Days">Days</option>
+                          <option value="Months">Months</option>
+                        </select>
                       </div>
                     </div>
                   </div>
+                 
                 </div>
               </div>
               <div class="row">
@@ -46,7 +51,7 @@
                   <label class="form-label" style="min-width:180px;" for="">Storage Space</label>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
-                  {{ form_widget(form.storageSize, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <input class="form-control mb-3" id="" type="text" placeholder="">
                 </div>
               </div>
               <div class="row">
@@ -54,7 +59,7 @@
                   <label class="form-label" style="min-width:180px;" for="">No Of Clients</label>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
-                  {{ form_widget(form.noOfClients, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <input class="form-control mb-3" id="" type="text" placeholder="">
                 </div>
               </div>
               <div class="row">
@@ -62,7 +67,7 @@
                   <label class="form-label" style="min-width:180px;" for="">No Of Employees</label>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
-                  {{ form_widget(form.noOfEmployee, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <input class="form-control mb-3" id="" type="text" placeholder="">
                 </div>
               </div>
               <div class="row">
@@ -70,7 +75,7 @@
                   <label class="form-label" style="min-width:180px;" for="">No Of Client Login</label>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
-                  {{ form_widget(form.noOfClientsLogin, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <input class="form-control mb-3" id="" type="text" placeholder="">
                 </div>
               </div>
               <div class="row">
@@ -78,7 +83,7 @@
                   <label class="form-label" style="min-width:180px;" for="">No Of Transactions</label>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
-                  {{ form_widget(form.noOfTransaction, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <input class="form-control mb-3" id="" type="text" placeholder="">
                 </div>
               </div>
               <div class="row mb-3">
@@ -89,29 +94,25 @@
                   <div class="py-2 mb-2">
                     <div class="row">
                       <div class="col-12">
-                        <div class="form-check form-switch mb-0">                          
-                          {{ form_widget(form.taskManager, {'attr': {'class': 'form-check-input'}}) }}
+                        <div class="form-check form-switch mb-0">
+                          <input class="form-check-input" id="fe_chk_1" type="checkbox" />
                           <label class="form-check-label" for="fe_chk_1">Task Manager</label>
                         </div>
                         <div class="form-check form-switch mb-0">
-                          {{ form_widget(form.fileManager, {'attr': {'class': 'form-check-input'}}) }}
+                          <input class="form-check-input" id="fe_chk_2" type="checkbox" />
                           <label class="form-check-label" for="fe_chk_2">File Manager</label>
                         </div>
                         <div class="form-check form-switch mb-0">
-                          {{ form_widget(form.eCommerce, {'attr': {'class': 'form-check-input'}}) }}
+                          <input class="form-check-input" id="fe_chk_4" type="checkbox" />
                           <label class="form-check-label" for="fe_chk_4">E-Commerce</label>
                         </div>
                         <div class="form-check form-switch mb-0">
-                          {{ form_widget(form.templateCustomization, {'attr': {'class': 'form-check-input'}}) }}
+                          <input class="form-check-input" id="fe_chk_5" type="checkbox" />
                           <label class="form-check-label" for="fe_chk_5">Tamplate - Customization for import</label>
                         </div>
                         <div class="form-check form-switch mb-0">
-                          {{ form_widget(form.liveReportClientMobileApp, {'attr': {'class': 'form-check-input'}}) }}
+                          <input class="form-check-input" id="fe_chk_6" type="checkbox" />
                           <label class="form-check-label" for="fe_chk_6">Live reports on client mobile app</label>
-                        </div>
-                        <div class="form-check form-switch mb-0">
-                          {{ form_widget(form.clientLoginApp, {'attr': {'class': 'form-check-input'}}) }}
-                          <label class="form-check-label" for="fe_chk_6">Client Login Mobile App</label>
                         </div>
                       </div>
                     </div>
@@ -123,15 +124,7 @@
                   <label class="form-label" style="min-width:180px;" for="">Price</label>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
-                  {{ form_widget(form.price, {'attr': {'class': 'form-control mb-3'}}) }}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-auto">
-                  <label class="form-label" style="min-width:180px;" for="">Status</label>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4">
-                  {{ form_widget(form.status, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <input class="form-control mb-3" id="" type="text" placeholder="">
                 </div>
               </div>
               <div class="row">
@@ -140,11 +133,12 @@
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
                   <div class="form-check form-switch">
-                    {{ form_widget(form.displayOnPortal, {'attr': {'class': 'form-check-input'}}) }}
+                    <input class="form-check-input" id="dp_radio_7" type="checkbox" value="yes" />
                     <label class="form-check-label" for="dp_radio_7">Yes</label>
                   </div>
                 </div>
               </div>
+
               <div class="row">
                 <div class="col-12 my-2 text-end">
                   <button type="submit" class="btn btn-primary">Add Plan</button>
