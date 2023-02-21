@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SubscriptionsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SubscriptionsRepository::class)]
 class Subscriptions
@@ -14,30 +15,38 @@ class Subscriptions
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $planTitle = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $time = null;
 
     #[ORM\Column(length: 255)]
     private ?string $monthDay = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $noOfClients = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $noOfClientsLogin = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $noOfEmployee = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $noOfTransaction = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $storageSize = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $price = null;
 
     #[ORM\Column(length: 255)]
@@ -191,7 +200,7 @@ class Subscriptions
         return $this;
     }
 
-    public function getDisplayOnPortal(): ?string
+    public function getDisplayOnPortal(): ?bool
     {
         return $this->displayOnPortal;
     }
@@ -203,7 +212,7 @@ class Subscriptions
         return $this;
     }
 
-    public function getTaskManager(): ?string
+    public function getTaskManager(): ?bool
     {
         return $this->taskManager;
     }
@@ -215,7 +224,7 @@ class Subscriptions
         return $this;
     }
 
-    public function getFileManager(): ?string
+    public function getFileManager(): ?bool
     {
         return $this->fileManager;
     }
@@ -227,7 +236,7 @@ class Subscriptions
         return $this;
     }
 
-    public function getClientLoginApp(): ?string
+    public function getClientLoginApp(): ?bool
     {
         return $this->clientLoginApp;
     }
@@ -239,7 +248,7 @@ class Subscriptions
         return $this;
     }
 
-    public function getECommerce(): ?string
+    public function getECommerce(): ?bool
     {
         return $this->eCommerce;
     }
@@ -251,7 +260,7 @@ class Subscriptions
         return $this;
     }
 
-    public function getTemplateCustomization(): ?string
+    public function getTemplateCustomization(): ?bool
     {
         return $this->templateCustomization;
     }
@@ -263,7 +272,7 @@ class Subscriptions
         return $this;
     }
 
-    public function getLiveReportClientMobileApp(): ?string
+    public function getLiveReportClientMobileApp(): ?bool
     {
         return $this->liveReportClientMobileApp;
     }

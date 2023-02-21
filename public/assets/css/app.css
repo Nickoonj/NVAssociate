@@ -1,0 +1,9 @@
+.form-error ul{
+    list-style: none;
+    color: red;
+    padding: unset;
+}
+.div-form-error input{
+    border-color: #dd4b39;
+    box-shadow: var(--falcon-box-shadow-inset),0 0 0 0.25rem rgba(247, 69, 38, 0.25);
+}

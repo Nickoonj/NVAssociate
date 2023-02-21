@@ -29,25 +29,25 @@ class SubscriptionFormType extends AbstractType
             ->add('storageSize')
             ->add('price')
             ->add('displayOnPortal' , CheckboxType::class, [                
-                'required' => true
+                'required' => false
             ])
             ->add('taskManager', CheckboxType::class, [                
-                'required' => true
+                'required' => false
             ])
             ->add('fileManager', CheckboxType::class, [                
-                'required' => true
+                'required' => false
             ])
             ->add('clientLoginApp', CheckboxType::class, [                
-                'required' => true
+                'required' => false
             ])
             ->add('eCommerce', CheckboxType::class, [                
-                'required' => true
+                'required' => false
             ])
             ->add('templateCustomization', CheckboxType::class, [                
-                'required' => true
+                'required' => false
             ])
             ->add('liveReportClientMobileApp', CheckboxType::class, [                
-                'required' => true
+                'required' => false
             ])
             ->add('status', ChoiceType::class, [
                 'choices'  => [
