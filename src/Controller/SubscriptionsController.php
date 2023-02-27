@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Subscriptions;
 use App\Form\SubscriptionFormType;
 use App\Repository\SubscriptionsRepository;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,11 +23,21 @@ class SubscriptionsController extends AbstractController
     }
 
     #[Route('/subscriptions', name: 'app_subscriptions')]
-    public function index(): Response
-    {
-        $subscriptions = $this->subscriptionsRepository->findAll();
+    public function index(Request $request): Response
+    {    
+        $sortby = $request->query->get('sortby', null);    
+        $queryBuilder = $this->subscriptionsRepository->createPaginatedQueryBuilder($sortby);
+        $adapter = new QueryAdapter($queryBuilder);
+        $subscriptions = Pagerfanta::createForCurrentPageWithMaxPerPage(
+            $adapter,
+            intval($request->query->get('page', 1)),
+            intval($request->query->get('limit', 1))
+        );
+                
         return $this->render('subscriptions/index.html.twig', [
-            'subscriptions' => $subscriptions
+            'subscriptions' => $subscriptions,
+            'limit' => intval($request->query->get('limit', 1)),
+            'sortby' => $sortby
         ]);
     }
     #[Route('/subscriptions/create', name: 'create_subscriptions')]

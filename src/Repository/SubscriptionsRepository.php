@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Subscriptions;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Doctrine\ORM\QueryBuilder;
 /**
  * @extends ServiceEntityRepository<Subscriptions>
  *
@@ -38,7 +38,30 @@ class SubscriptionsRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    public function createPaginatedQueryBuilder(string $sortby=null, string $slug = null): QueryBuilder
+    {
+        if($sortby == 'Latest')
+        {
+            $field = 's.createdAt';
+            $order = 'DESC';
+        }
+        else if($sortby == 'Price')
+        {
+            $field = 's.price';
+            $order = 'DESC';
+        }
+        else if($sortby == 'Name')
+        {
+            $field = 's.planTitle';
+            $order = 'ASC';
+        }
+        else{
+            $field = 's.id';
+            $order = 'ASC';
+        }
+        $queryBuilder = $this->createQueryBuilder('s')->orderBy($field, $order);        
+        return $queryBuilder;
+    }
 //    /**
 //     * @return Subscriptions[] Returns an array of Subscriptions objects
 //     */

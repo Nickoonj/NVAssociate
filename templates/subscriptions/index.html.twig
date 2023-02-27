@@ -4,6 +4,7 @@
 
 {% block content %}
   <!-- start: basic forms -->
+        
         <div class="card mb-3">
           <!-- <div class="card-header position-relative d-flex" style="min-height:90px;">
             <div class="d-flex align-items-center w-100">
@@ -29,7 +30,7 @@
                 </li>
               </ul>
             </div>
-
+            
             <div class="tab-content" id="myTabContent">
               {% for message in app.flashes('success') %}                
                 <div class="alert alert-success border-2 d-flex align-items-center" role="alert">
@@ -39,12 +40,42 @@
               {% endfor %}
               
               <div class="tab-pane fade show active" id="tab_1" role="tabpanel">
-                <div class="d-flex w-100 mb-3">
+                {# <div class="d-flex w-100 mb-3">                  
                   <div class="ms-auto">
                     <a href="{{path('create_subscriptions')}}"><button type="button" class="btn btn-primary">Create New Subscription</button></a>
 
                   </div>
-                </div>
+                </div> #}
+                <div class="row flex-between-center">
+                    
+                    <div class="col-sm-12 mb-2 mb-sm-0">
+                      <div class="row gx-2 align-items-center">
+                        <div class="col-6">
+                          {# <form action="{{ path('app_subscriptions') }}" class="row gx-2">
+                            <div class="col-auto pt-2"><small style="font-size: 100%">Show: </small></div>
+                            <div class="col-auto">
+                                <select name="limit" class="form-select form-select-sm" aria-label="Bulk actions" onchange="this.form.submit()">
+                                    <option value="1" {% if limit == 1 %}selected{% endif %} >1</option>
+                                    <option value="2" {% if limit == 2 %}selected{% endif %} >2</option>
+                                    <option value="5" {% if limit == 5 %}selected{% endif %} >5</option>
+                                  </select>
+                            </div> 
+                            <div class="col-auto pt-2"><small style="font-size: 100%">Sort by: </small></div>
+                            <div class="col-auto">
+                                <select name="sortby" class="form-select form-select-sm" aria-label="Bulk actions" onchange="this.form.submit()">
+                                  <option value="Latest" {% if sortby == 'Latest' %}selected{% endif %}>Latest</option>
+                                  <option value="Name" {% if sortby == 'Name' %}selected{% endif %}>Name</option>
+                                  <option value="Price" {% if sortby == 'Price' %}selected{% endif %}>Price</option>
+                                </select>
+                              </div>
+                          </form> #}
+                        </div>
+                        
+                        <div class="col-6 pe-0 d-flex justify-content-end"><a href="{{path('create_subscriptions')}}"><button type="button" class="btn btn-primary">Create New Subscription</button></a></div>
+                      </div>
+                    </div>
+                  </div>
+                
                 {% if subscriptions|length > 0 %}
                     {% for subscription in subscriptions %}
                     
@@ -68,8 +99,8 @@
                                 </div>
                                 <span class="mx-2 text-400">|</span>
                                 <a href="/subscriptions/edit/{{ subscription.id }}"><i class="fas fa-pencil-alt"></i> Edit</a>&nbsp;&nbsp;
-                                <a href="/subscriptions/delete/{{ subscription.id }}"><i class="fas fa-trash"></i> Delete</a>
-                                <a class="fs--1 ms-1" href="#">(History)</a>
+                                {# <a href="/subscriptions/delete/{{ subscription.id }}" onclick="return confirm('Are you sure you want to delete this subscription?');"><i class="fas fa-trash"></i> Delete</a>
+                                <a class="fs--1 ms-1" href="#">(History)</a> #}
                             </div>
 
                             </div>
@@ -82,17 +113,18 @@
                                     <i class="far fa-clock fs-1"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-2">
-                                    <p class="mb-0 fs--1">{{ subscription.monthDay }}</p>
-                                    <p class="fw-semi-bold">{{ subscription.time }}</p>
+                                    <p class="mb-0 fs--1">Validity</p>
+                                    <p class="fw-semi-bold">{{ subscription.time }} {{ subscription.monthDay }} </p>
                                 </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="d-flex">
                                 <div class="flex-shrink-0">
-                                    <i class="fas fa-money-bill-alt fs-1"></i>
+                                    <i class="fas fa-money-bill"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Price</p>
                                     <p class="mb-0 fw-semi-bold">{{ subscription.price }}/-</p>
                                 </div>
                                 </div>
@@ -144,6 +176,28 @@
                             <div class="col">
                                 <div class="d-flex">
                                 <div class="flex-shrink-0">
+                                    <i class="fas fa-database fs-1"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Storage</p>
+                                    <p class="fw-semi-bold">{{ subscription.storageSize }} GB</p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-users fs-1"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Subscribers</p>
+                                    <p class="fw-semi-bold">0</p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex">
+                                <div class="flex-shrink-0">
                                     <i class="fas fa-cubes fs-1"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-2">
@@ -160,28 +214,8 @@
                                 </div>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="d-flex">
-                                <div class="flex-shrink-0">
-                                    <i class="fas fa-database fs-1"></i>
-                                </div>
-                                <div class="flex-grow-1 ms-2">
-                                    <p class="mb-0 fs--1">Storage</p>
-                                    <p class="fw-semi-bold">{{ subscription.storageSize }} GB</p>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="d-flex">
-                                <div class="flex-shrink-0">
-                                    <i class="fas fa-users fs-1"></i>
-                                </div>
-                                <div class="flex-grow-1 ms-2">
-                                    <p class="mb-0 fs--1">Subscribers</p>
-                                    <p class="fw-semi-bold">68</p>
-                                </div>
-                                </div>
-                            </div>
+                            
+                            
 
                             </div>
                         </div>
@@ -192,7 +226,32 @@
                         <h5>No Subscriptions Available!</h5>
                     </div>
                 {% endif %}
-                             
+                <div class="row flex-between-center">
+                  <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                    {{ pagerfanta(subscriptions) }}
+                    <form action="{{ path('app_subscriptions') }}" class="row gx-2">                            
+                      <div class="col-auto">
+                          <select name="limit" class="form-select form-select-sm pagination-limit" aria-label="Bulk actions" onchange="this.form.submit()">
+                              <option value="1" {% if limit == 1 %}selected{% endif %} >1 / Page</option>
+                              <option value="2" {% if limit == 2 %}selected{% endif %} >2 / Page</option>
+                              <option value="5" {% if limit == 5 %}selected{% endif %} >5 / Page</option>
+                            </select>
+                      </div> 
+                      
+                      <div class="col-auto">
+                          <select name="sortby" class="form-select form-select-sm pagination-orderby" aria-label="Bulk actions" onchange="this.form.submit()">
+                            <option value="Latest" {% if sortby == 'Latest' %}selected{% endif %}>Latest</option>
+                            <option value="Name" {% if sortby == 'Name' %}selected{% endif %}>Name</option>
+                            <option value="Price" {% if sortby == 'Price' %}selected{% endif %}>Price</option>
+                          </select>
+                        </div>
+                    </form>
+                    </div>
+                  </div>
+                  
+                </div>
+                
               </div>
 
               <div class="tab-pane fade" id="tab_2" role="tabpanel">

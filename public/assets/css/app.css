@@ -7,3 +7,22 @@
     border-color: #dd4b39;
     box-shadow: var(--falcon-box-shadow-inset),0 0 0 0.25rem rgba(247, 69, 38, 0.25);
 }
+.page-item.disabled .page-link {
+    border-color: whitesmoke;    
+    
+}
+.pagination .page-link {    
+    border-radius: 0.25rem;
+    
+}
+.pagination .page-item{
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    border-radius: 0.25rem;
+    -webkit-box-shadow: var(--falcon-btn-falcon-box-shadow);
+    box-shadow: var(--falcon-btn-falcon-box-shadow);
+    
+}
+.pagination-limit, .pagination-orderby{
+    padding: 0.5rem 2rem;
+}
