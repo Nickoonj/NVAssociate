@@ -24,20 +24,34 @@ class SubscriptionsController extends AbstractController
 
     #[Route('/subscriptions', name: 'app_subscriptions')]
     public function index(Request $request): Response
-    {    
-        $sortby = $request->query->get('sortby', null);    
-        $queryBuilder = $this->subscriptionsRepository->createPaginatedQueryBuilder($sortby);
+    {   
+        $searchBy = $request->query->get('searchBy', null);         
+        $sortBy = $request->query->get('sortby', null);        
+        if($sortBy == '')
+        {
+            $sortByFeild = 's.createdAt'; 
+            $order = 'DESC';             
+        }
+        else
+        {
+            $sortbyexpd = explode('-',$sortBy);  
+            $sortByFeild = $sortbyexpd[0];
+            $order = $sortbyexpd[1];
+        }
+        $queryBuilder = $this->subscriptionsRepository->createPaginatedQueryBuilder($sortByFeild,$order,$searchBy);
         $adapter = new QueryAdapter($queryBuilder);
         $subscriptions = Pagerfanta::createForCurrentPageWithMaxPerPage(
             $adapter,
             intval($request->query->get('page', 1)),
-            intval($request->query->get('limit', 1))
+            intval($request->query->get('limit', 5))
         );
                 
         return $this->render('subscriptions/index.html.twig', [
             'subscriptions' => $subscriptions,
-            'limit' => intval($request->query->get('limit', 1)),
-            'sortby' => $sortby
+            'limit' => intval($request->query->get('limit', 5)),
+            'sortby' => $sortByFeild,
+            'order' => $order,
+            'searchBy' => $searchBy
         ]);
     }
     #[Route('/subscriptions/create', name: 'create_subscriptions')]

@@ -5,7 +5,9 @@
 {% block content %}
   <!-- start: basic forms -->
         
-        <div class="card mb-3">
+        <div class="card mb-3 page-main-content">
+       
+          
           <!-- <div class="card-header position-relative d-flex" style="min-height:90px;">
             <div class="d-flex align-items-center w-100">
               <div class="me-auto">
@@ -40,39 +42,60 @@
               {% endfor %}
               
               <div class="tab-pane fade show active" id="tab_1" role="tabpanel">
-                {# <div class="d-flex w-100 mb-3">                  
-                  <div class="ms-auto">
-                    <a href="{{path('create_subscriptions')}}"><button type="button" class="btn btn-primary">Create New Subscription</button></a>
+                <form action="{{ path('app_subscriptions') }}" class="row gx-2" id="js-filter-form">
+                  <div class="d-flex align-items-center w-100 mb-3">
+                    <div class="me-auto">
+                      <div class="search-box search_inputform w-auto">
+                        <input type="text" name="searchBy" value="{{searchBy}}" class="form-control form-control-sm search-input js-search-input" placeholder="Search"
+                          style="border-radius: 0.25rem;">
+                        <span class="fas fa-search search-box-icon"></span>
+                      </div>
+                    </div>
+                    <div class="ms-auto">
+                      <a href="javascript:void();" class="btn-link text-decoration-none js-filter"><span
+                          style="min-width: 100px; padding-right: 5px;">Sort By</span> <i
+                          class="fas fa-angle-down"></i></a>
+                      <!-- <button type="button" class="btn btn-falcon-default btn-sm" ></button> -->
 
+                    </div>
                   </div>
-                </div> #}
+                  <div id="filter_box" class="fl_filter_box fl_filter_close">                  
+                    <div class="g-2 row row-cols-md-4 ">
+
+                        <div class="col">
+                          <h6>Latest</h6>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault3" type="radio" name="sortby" value="s.createdAt-ASC" {% if (sortby == 's.createdAt') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault3">Asc</label></div>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault4" type="radio" name="sortby" value="s.createdAt-DESC" {% if (sortby == 's.createdAt') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault4">Desc</label></div>
+                        </div>
+                        <div class="col">
+                          <h6>Name</h6>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault1" type="radio" name="sortby" value="s.planTitle-ASC" {% if (sortby == 's.planTitle') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault1">Asc</label></div>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault2" type="radio" name="sortby" value="s.planTitle-DESC" {% if (sortby == 's.planTitle') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault2">Desc</label></div>
+                        </div>                      
+                        <div class="col">
+                          <h6>Price</h6>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault5" type="radio" name="sortby" value="s.price-ASC" {% if (sortby == 's.price') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault5">Lowest</label></div>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault6" type="radio" name="sortby" value="s.price-DESC" {% if (sortby == 's.price') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault6">Highest</label></div>
+                        </div>                    
+                        <div class="col">
+                          <h6>Subscribers</h6>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault7" type="radio" name="sortby" value="s.subscribers-ASC" {% if (sortby == 's.subscribers') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault7">Lowest</label></div>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault8" type="radio" name="sortby" value="s.subscribers-DESC" {% if (sortby == 's.subscribers') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault8">Highest</label></div>
+                        </div>                      
+                      
+                    </div>                                                                      
+                  </div>
+                  <input type="hidden" name="limit" value="{{limit}}"> 
+                </form>  
                 <div class="row flex-between-center">
                     
                     <div class="col-sm-12 mb-2 mb-sm-0">
-                      <div class="row gx-2 align-items-center">
-                        <div class="col-6">
-                          {# <form action="{{ path('app_subscriptions') }}" class="row gx-2">
-                            <div class="col-auto pt-2"><small style="font-size: 100%">Show: </small></div>
-                            <div class="col-auto">
-                                <select name="limit" class="form-select form-select-sm" aria-label="Bulk actions" onchange="this.form.submit()">
-                                    <option value="1" {% if limit == 1 %}selected{% endif %} >1</option>
-                                    <option value="2" {% if limit == 2 %}selected{% endif %} >2</option>
-                                    <option value="5" {% if limit == 5 %}selected{% endif %} >5</option>
-                                  </select>
-                            </div> 
-                            <div class="col-auto pt-2"><small style="font-size: 100%">Sort by: </small></div>
-                            <div class="col-auto">
-                                <select name="sortby" class="form-select form-select-sm" aria-label="Bulk actions" onchange="this.form.submit()">
-                                  <option value="Latest" {% if sortby == 'Latest' %}selected{% endif %}>Latest</option>
-                                  <option value="Name" {% if sortby == 'Name' %}selected{% endif %}>Name</option>
-                                  <option value="Price" {% if sortby == 'Price' %}selected{% endif %}>Price</option>
-                                </select>
-                              </div>
-                          </form> #}
-                        </div>
-                        
-                        <div class="col-6 pe-0 d-flex justify-content-end"><a href="{{path('create_subscriptions')}}"><button type="button" class="btn btn-primary">Create New Subscription</button></a></div>
-                      </div>
+                      <a href="{{path('create_subscriptions')}}">
+                        <button class="btn btn-primary me-1 mb-1 mt-1 pull-right" type="button">
+                          <span class="fas fa-plus me-1" data-fa-transform="shrink-3"></span>New
+                        </button>
+                      </a>
+                      
                     </div>
                   </div>
                 
@@ -230,22 +253,18 @@
                   <div class="col-12">
                     <div class="d-flex justify-content-end">
                     {{ pagerfanta(subscriptions) }}
-                    <form action="{{ path('app_subscriptions') }}" class="row gx-2">                            
+                    <form action="{{ path('app_subscriptions') }}" class="row gx-2">
+                      <input type="hidden" name="sortby" value="{{sortby}}-{{order}}"> 
+                      <input type="hidden" name="searchBy" value="{{searchBy}}" >                            
                       <div class="col-auto">
-                          <select name="limit" class="form-select form-select-sm pagination-limit" aria-label="Bulk actions" onchange="this.form.submit()">
-                              <option value="1" {% if limit == 1 %}selected{% endif %} >1 / Page</option>
-                              <option value="2" {% if limit == 2 %}selected{% endif %} >2 / Page</option>
+                          <select name="limit" class="form-select form-select-sm pagination-limit js-pagination-limit" aria-label="Bulk actions">
                               <option value="5" {% if limit == 5 %}selected{% endif %} >5 / Page</option>
+                              <option value="10" {% if limit == 10 %}selected{% endif %} >10 / Page</option>
+                              <option value="25" {% if limit == 25 %}selected{% endif %} >25 / Page</option>
+                              <option value="50" {% if limit == 50 %}selected{% endif %} >50 / Page</option>
+                              <option value="100" {% if limit == 100 %}selected{% endif %} >100 / Page</option>
                             </select>
-                      </div> 
-                      
-                      <div class="col-auto">
-                          <select name="sortby" class="form-select form-select-sm pagination-orderby" aria-label="Bulk actions" onchange="this.form.submit()">
-                            <option value="Latest" {% if sortby == 'Latest' %}selected{% endif %}>Latest</option>
-                            <option value="Name" {% if sortby == 'Name' %}selected{% endif %}>Name</option>
-                            <option value="Price" {% if sortby == 'Price' %}selected{% endif %}>Price</option>
-                          </select>
-                        </div>
+                      </div>                                             
                     </form>
                     </div>
                   </div>
@@ -542,4 +561,5 @@
 
           </div>
         </div>
+        
 {% endblock %}

@@ -38,28 +38,29 @@ class SubscriptionsRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function createPaginatedQueryBuilder(string $sortby=null, string $slug = null): QueryBuilder
+    public function createPaginatedQueryBuilder(string $sortby=null,string $order=null, string $slug = null): QueryBuilder
     {
-        if($sortby == 'Latest')
+        
+        if($sortby == '')
         {
-            $field = 's.createdAt';
-            $order = 'DESC';
+            $sortby = 's.createdAt';            
         }
-        else if($sortby == 'Price')
+        if($order == '')
         {
-            $field = 's.price';
-            $order = 'DESC';
+            $order = 'DESC';            
         }
-        else if($sortby == 'Name')
+        if($slug != '')
         {
-            $field = 's.planTitle';
-            $order = 'ASC';
+            $queryBuilder = $this->createQueryBuilder('s')
+            ->andWhere('s.planTitle LIKE :val OR s.price LIKE :val OR s.noOfTransaction LIKE :val
+                        OR s.noOfClients LIKE :val OR s.noOfEmployee LIKE :val ')
+            ->setParameter('val', '%'.$slug.'%')
+            ->orderBy($sortby, $order); 
         }
         else{
-            $field = 's.id';
-            $order = 'ASC';
+            $queryBuilder = $this->createQueryBuilder('s')->orderBy($sortby, $order); 
         }
-        $queryBuilder = $this->createQueryBuilder('s')->orderBy($field, $order);        
+               
         return $queryBuilder;
     }
 //    /**
