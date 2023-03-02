@@ -26,3 +26,16 @@
 .pagination-limit, .pagination-orderby{
     padding: 0.5rem 2rem;
 }
+.loader{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    background-color: #fff;
+}
+.loader > img{width: 260px;}

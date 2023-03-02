@@ -71,8 +71,9 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
 
         // line 6
         echo "  <!-- start: basic forms -->
-        
-        <div class=\"card mb-3 page-main-content\">
+        ";
+        // line 10
+        echo "        <div class=\"card mb-3 page-main-content\">
        
           
           <!-- <div class=\"card-header position-relative d-flex\" style=\"min-height:90px;\">
@@ -102,15 +103,15 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
             
             <div class=\"tab-content\" id=\"myTabContent\">
               ";
-        // line 37
+        // line 39
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 37, $this->source); })()), "flashes", [0 => "success"], "method", false, false, false, 37));
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 39, $this->source); })()), "flashes", [0 => "success"], "method", false, false, false, 39));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
             echo "                
                 <div class=\"alert alert-success border-2 d-flex align-items-center\" role=\"alert\">
                   <div class=\"bg-success me-3 icon-item\"><span class=\"fas fa-check-circle text-white fs-3\"></span></div>
                   <p class=\"mb-0 flex-1\">";
-            // line 40
+            // line 42
             echo twig_escape_filter($this->env, $context["message"], "html", null, true);
             echo "</p><button class=\"btn-close\" type=\"button\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
                 </div>
@@ -119,19 +120,19 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 43
+        // line 45
         echo "              
               <div class=\"tab-pane fade show active\" id=\"tab_1\" role=\"tabpanel\">
                 <form action=\"";
-        // line 45
+        // line 47
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_subscriptions");
         echo "\" class=\"row gx-2\" id=\"js-filter-form\">
                   <div class=\"d-flex align-items-center w-100 mb-3\">
                     <div class=\"me-auto\">
                       <div class=\"search-box search_inputform w-auto\">
                         <input type=\"text\" name=\"searchBy\" value=\"";
-        // line 49
-        echo twig_escape_filter($this->env, (isset($context["searchBy"]) || array_key_exists("searchBy", $context) ? $context["searchBy"] : (function () { throw new RuntimeError('Variable "searchBy" does not exist.', 49, $this->source); })()), "html", null, true);
+        // line 51
+        echo twig_escape_filter($this->env, (isset($context["searchBy"]) || array_key_exists("searchBy", $context) ? $context["searchBy"] : (function () { throw new RuntimeError('Variable "searchBy" does not exist.', 51, $this->source); })()), "html", null, true);
         echo "\" class=\"form-control form-control-sm search-input js-search-input\" placeholder=\"Search\"
                           style=\"border-radius: 0.25rem;\">
                         <span class=\"fas fa-search search-box-icon\"></span>
@@ -151,14 +152,14 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                         <div class=\"col\">
                           <h6>Latest</h6>
                           <div class=\"form-check\"><input class=\"form-check-input js-sortby\" id=\"flexRadioDefault3\" type=\"radio\" name=\"sortby\" value=\"s.createdAt-ASC\" ";
-        // line 67
-        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 67, $this->source); })()) == "s.createdAt") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 67, $this->source); })()) == "ASC"))) {
+        // line 69
+        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 69, $this->source); })()) == "s.createdAt") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 69, $this->source); })()) == "ASC"))) {
             echo "checked=\"\"";
         }
         echo "/><label class=\"form-check-label\" for=\"flexRadioDefault3\">Asc</label></div>
                           <div class=\"form-check\"><input class=\"form-check-input js-sortby\" id=\"flexRadioDefault4\" type=\"radio\" name=\"sortby\" value=\"s.createdAt-DESC\" ";
-        // line 68
-        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 68, $this->source); })()) == "s.createdAt") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 68, $this->source); })()) == "DESC"))) {
+        // line 70
+        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 70, $this->source); })()) == "s.createdAt") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 70, $this->source); })()) == "DESC"))) {
             echo "checked=\"\"";
         }
         echo "/><label class=\"form-check-label\" for=\"flexRadioDefault4\">Desc</label></div>
@@ -166,14 +167,14 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                         <div class=\"col\">
                           <h6>Name</h6>
                           <div class=\"form-check\"><input class=\"form-check-input js-sortby\" id=\"flexRadioDefault1\" type=\"radio\" name=\"sortby\" value=\"s.planTitle-ASC\" ";
-        // line 72
-        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 72, $this->source); })()) == "s.planTitle") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 72, $this->source); })()) == "ASC"))) {
+        // line 74
+        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 74, $this->source); })()) == "s.planTitle") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 74, $this->source); })()) == "ASC"))) {
             echo "checked=\"\"";
         }
         echo "/><label class=\"form-check-label\" for=\"flexRadioDefault1\">Asc</label></div>
                           <div class=\"form-check\"><input class=\"form-check-input js-sortby\" id=\"flexRadioDefault2\" type=\"radio\" name=\"sortby\" value=\"s.planTitle-DESC\" ";
-        // line 73
-        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 73, $this->source); })()) == "s.planTitle") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 73, $this->source); })()) == "DESC"))) {
+        // line 75
+        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 75, $this->source); })()) == "s.planTitle") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 75, $this->source); })()) == "DESC"))) {
             echo "checked=\"\"";
         }
         echo "/><label class=\"form-check-label\" for=\"flexRadioDefault2\">Desc</label></div>
@@ -181,14 +182,14 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                         <div class=\"col\">
                           <h6>Price</h6>
                           <div class=\"form-check\"><input class=\"form-check-input js-sortby\" id=\"flexRadioDefault5\" type=\"radio\" name=\"sortby\" value=\"s.price-ASC\" ";
-        // line 77
-        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 77, $this->source); })()) == "s.price") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 77, $this->source); })()) == "ASC"))) {
+        // line 79
+        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 79, $this->source); })()) == "s.price") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 79, $this->source); })()) == "ASC"))) {
             echo "checked=\"\"";
         }
         echo "/><label class=\"form-check-label\" for=\"flexRadioDefault5\">Lowest</label></div>
                           <div class=\"form-check\"><input class=\"form-check-input js-sortby\" id=\"flexRadioDefault6\" type=\"radio\" name=\"sortby\" value=\"s.price-DESC\" ";
-        // line 78
-        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 78, $this->source); })()) == "s.price") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 78, $this->source); })()) == "DESC"))) {
+        // line 80
+        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 80, $this->source); })()) == "s.price") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 80, $this->source); })()) == "DESC"))) {
             echo "checked=\"\"";
         }
         echo "/><label class=\"form-check-label\" for=\"flexRadioDefault6\">Highest</label></div>
@@ -196,14 +197,14 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                         <div class=\"col\">
                           <h6>Subscribers</h6>
                           <div class=\"form-check\"><input class=\"form-check-input js-sortby\" id=\"flexRadioDefault7\" type=\"radio\" name=\"sortby\" value=\"s.subscribers-ASC\" ";
-        // line 82
-        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 82, $this->source); })()) == "s.subscribers") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 82, $this->source); })()) == "ASC"))) {
+        // line 84
+        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 84, $this->source); })()) == "s.subscribers") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 84, $this->source); })()) == "ASC"))) {
             echo "checked=\"\"";
         }
         echo "/><label class=\"form-check-label\" for=\"flexRadioDefault7\">Lowest</label></div>
                           <div class=\"form-check\"><input class=\"form-check-input js-sortby\" id=\"flexRadioDefault8\" type=\"radio\" name=\"sortby\" value=\"s.subscribers-DESC\" ";
-        // line 83
-        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 83, $this->source); })()) == "s.subscribers") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 83, $this->source); })()) == "DESC"))) {
+        // line 85
+        if ((((isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 85, $this->source); })()) == "s.subscribers") && ((isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 85, $this->source); })()) == "DESC"))) {
             echo "checked=\"\"";
         }
         echo "/><label class=\"form-check-label\" for=\"flexRadioDefault8\">Highest</label></div>
@@ -212,15 +213,15 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                     </div>                                                                      
                   </div>
                   <input type=\"hidden\" name=\"limit\" value=\"";
-        // line 88
-        echo twig_escape_filter($this->env, (isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 88, $this->source); })()), "html", null, true);
+        // line 90
+        echo twig_escape_filter($this->env, (isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 90, $this->source); })()), "html", null, true);
         echo "\"> 
                 </form>  
                 <div class=\"row flex-between-center\">
                     
                     <div class=\"col-sm-12 mb-2 mb-sm-0\">
                       <a href=\"";
-        // line 93
+        // line 95
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("create_subscriptions");
         echo "\">
                         <button class=\"btn btn-primary me-1 mb-1 mt-1 pull-right\" type=\"button\">
@@ -232,14 +233,14 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                   </div>
                 
                 ";
-        // line 102
-        if ((twig_length_filter($this->env, (isset($context["subscriptions"]) || array_key_exists("subscriptions", $context) ? $context["subscriptions"] : (function () { throw new RuntimeError('Variable "subscriptions" does not exist.', 102, $this->source); })())) > 0)) {
-            // line 103
+        // line 104
+        if ((twig_length_filter($this->env, (isset($context["subscriptions"]) || array_key_exists("subscriptions", $context) ? $context["subscriptions"] : (function () { throw new RuntimeError('Variable "subscriptions" does not exist.', 104, $this->source); })())) > 0)) {
+            // line 105
             echo "                    ";
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["subscriptions"]) || array_key_exists("subscriptions", $context) ? $context["subscriptions"] : (function () { throw new RuntimeError('Variable "subscriptions" does not exist.', 103, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["subscriptions"]) || array_key_exists("subscriptions", $context) ? $context["subscriptions"] : (function () { throw new RuntimeError('Variable "subscriptions" does not exist.', 105, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["subscription"]) {
-                // line 104
+                // line 106
                 echo "                    
                     <div class=\"card card-body mt-2 shadow-none bg-100 border mb-3\">
                         <div class=\"d-flex w-100\">
@@ -247,14 +248,14 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                             <div class=\"d-flex\">
                                 <div class=\"flex-shrink-0\">
                                 <span class=\"cli_no bg-primary text-white fw-bold\">";
-                // line 110
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "id", [], "any", false, false, false, 110), "html", null, true);
+                // line 112
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "id", [], "any", false, false, false, 112), "html", null, true);
                 echo "</span>
                                 </div>
                                 <div class=\"flex-grow-1 ms-2\">
                                 <h5 class=\"mb-0\">";
-                // line 113
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "planTitle", [], "any", false, false, false, 113), "html", null, true);
+                // line 115
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "planTitle", [], "any", false, false, false, 115), "html", null, true);
                 echo "</h5>
                                 </div>
                             </div>
@@ -263,8 +264,8 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                             <div class=\"d-flex align-items-center\">
                                 <div class=\"form-check form-switch mb-0\">
                                 <input class=\"form-check-input\" id=\"fe_chk_1\" type=\"checkbox\" ";
-                // line 120
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "status", [], "any", false, false, false, 120) == 1)) {
+                // line 122
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "status", [], "any", false, false, false, 122) == 1)) {
                     echo "checked ";
                 }
                 echo "/>
@@ -272,11 +273,11 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 </div>
                                 <span class=\"mx-2 text-400\">|</span>
                                 <a href=\"/subscriptions/edit/";
-                // line 124
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "id", [], "any", false, false, false, 124), "html", null, true);
+                // line 126
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "id", [], "any", false, false, false, 126), "html", null, true);
                 echo "\"><i class=\"fas fa-pencil-alt\"></i> Edit</a>&nbsp;&nbsp;
                                 ";
-                // line 127
+                // line 129
                 echo "                            </div>
 
                             </div>
@@ -291,10 +292,10 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 <div class=\"flex-grow-1 ms-2\">
                                     <p class=\"mb-0 fs--1\">Validity</p>
                                     <p class=\"fw-semi-bold\">";
-                // line 140
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "time", [], "any", false, false, false, 140), "html", null, true);
+                // line 142
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "time", [], "any", false, false, false, 142), "html", null, true);
                 echo " ";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "monthDay", [], "any", false, false, false, 140), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "monthDay", [], "any", false, false, false, 142), "html", null, true);
                 echo " </p>
                                 </div>
                                 </div>
@@ -307,8 +308,8 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 <div class=\"flex-grow-1 ms-2\">
                                     <p class=\"mb-0 fs--1\">Price</p>
                                     <p class=\"mb-0 fw-semi-bold\">";
-                // line 151
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "price", [], "any", false, false, false, 151), "html", null, true);
+                // line 153
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "price", [], "any", false, false, false, 153), "html", null, true);
                 echo "/-</p>
                                 </div>
                                 </div>
@@ -321,8 +322,8 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 <div class=\"flex-grow-1 ms-2\">
                                     <p class=\"mb-0 fs--1\">Transactions</p>
                                     <p class=\"fw-semi-bold\">";
-                // line 162
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "noOfTransaction", [], "any", false, false, false, 162), "html", null, true);
+                // line 164
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "noOfTransaction", [], "any", false, false, false, 164), "html", null, true);
                 echo "</p>
                                 </div>
                                 </div>
@@ -335,8 +336,8 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 <div class=\"flex-grow-1 ms-2\">
                                     <p class=\"mb-0 fs--1\">Employees</p>
                                     <p class=\"fw-semi-bold\">";
-                // line 173
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "noOfEmployee", [], "any", false, false, false, 173), "html", null, true);
+                // line 175
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "noOfEmployee", [], "any", false, false, false, 175), "html", null, true);
                 echo "</p>
                                 </div>
                                 </div>
@@ -349,8 +350,8 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 <div class=\"flex-grow-1 ms-2\">
                                     <p class=\"mb-0 fs--1\">Clients</p>
                                     <p class=\"fw-semi-bold\">";
-                // line 184
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "noOfClients", [], "any", false, false, false, 184), "html", null, true);
+                // line 186
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "noOfClients", [], "any", false, false, false, 186), "html", null, true);
                 echo "</p>
                                 </div>
                                 </div>
@@ -363,8 +364,8 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 <div class=\"flex-grow-1 ms-2\">
                                     <p class=\"mb-0 fs--1\">Client Login</p>
                                     <p class=\"fw-semi-bold\">";
-                // line 195
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "noOfClientsLogin", [], "any", false, false, false, 195), "html", null, true);
+                // line 197
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "noOfClientsLogin", [], "any", false, false, false, 197), "html", null, true);
                 echo "</p>
                                 </div>
                                 </div>
@@ -377,8 +378,8 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 <div class=\"flex-grow-1 ms-2\">
                                     <p class=\"mb-0 fs--1\">Storage</p>
                                     <p class=\"fw-semi-bold\">";
-                // line 206
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "storageSize", [], "any", false, false, false, 206), "html", null, true);
+                // line 208
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "storageSize", [], "any", false, false, false, 208), "html", null, true);
                 echo " GB</p>
                                 </div>
                                 </div>
@@ -403,36 +404,36 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                     <p class=\"mb-0 fs--1\">Features</p>
                                     <ul class=\"ps-3 mt-1 fw-semi-bold mb-1\">
                                     ";
-                // line 229
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "taskManager", [], "any", false, false, false, 229) == 1)) {
-                    echo "<li>Task Manager</li>";
-                }
-                // line 230
-                echo "                                    ";
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "fileManager", [], "any", false, false, false, 230) == 1)) {
-                    echo "<li>File Manager</li>";
-                }
                 // line 231
-                echo "                                    ";
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "eCommerce", [], "any", false, false, false, 231) == 1)) {
-                    echo "<li>E-Commerce</li>";
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "taskManager", [], "any", false, false, false, 231) == 1)) {
+                    echo "<li>Task Manager</li>";
                 }
                 // line 232
                 echo "                                    ";
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "templateCustomization", [], "any", false, false, false, 232) == 1)) {
-                    echo "<li>Tamplate - Customization for import</li>";
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "fileManager", [], "any", false, false, false, 232) == 1)) {
+                    echo "<li>File Manager</li>";
                 }
                 // line 233
                 echo "                                    ";
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "liveReportClientMobileApp", [], "any", false, false, false, 233) == 1)) {
-                    echo "<li>Live reports on client mobile app</li>";
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "eCommerce", [], "any", false, false, false, 233) == 1)) {
+                    echo "<li>E-Commerce</li>";
                 }
                 // line 234
                 echo "                                    ";
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "clientLoginApp", [], "any", false, false, false, 234) == 1)) {
-                    echo "<li>Client Login Mobile App</li>";
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "templateCustomization", [], "any", false, false, false, 234) == 1)) {
+                    echo "<li>Tamplate - Customization for import</li>";
                 }
                 // line 235
+                echo "                                    ";
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "liveReportClientMobileApp", [], "any", false, false, false, 235) == 1)) {
+                    echo "<li>Live reports on client mobile app</li>";
+                }
+                // line 236
+                echo "                                    ";
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "clientLoginApp", [], "any", false, false, false, 236) == 1)) {
+                    echo "<li>Client Login Mobile App</li>";
+                }
+                // line 237
                 echo "
                                     </ul>
                                 </div>
@@ -449,67 +450,67 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['subscription'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 246
+            // line 248
             echo "        
                 ";
         } else {
-            // line 248
+            // line 250
             echo "                    <div class=\"card card-body mt-2 shadow-none bg-100 border mb-3\">
                         <h5>No Subscriptions Available!</h5>
                     </div>
                 ";
         }
-        // line 252
+        // line 254
         echo "                <div class=\"row flex-between-center\">
                   <div class=\"col-12\">
                     <div class=\"d-flex justify-content-end\">
                     ";
-        // line 255
-        echo $this->env->getRuntime('Pagerfanta\Twig\Extension\PagerfantaRuntime')->renderPagerfanta((isset($context["subscriptions"]) || array_key_exists("subscriptions", $context) ? $context["subscriptions"] : (function () { throw new RuntimeError('Variable "subscriptions" does not exist.', 255, $this->source); })()));
+        // line 257
+        echo $this->env->getRuntime('Pagerfanta\Twig\Extension\PagerfantaRuntime')->renderPagerfanta((isset($context["subscriptions"]) || array_key_exists("subscriptions", $context) ? $context["subscriptions"] : (function () { throw new RuntimeError('Variable "subscriptions" does not exist.', 257, $this->source); })()));
         echo "
                     <form action=\"";
-        // line 256
+        // line 258
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_subscriptions");
         echo "\" class=\"row gx-2\">
                       <input type=\"hidden\" name=\"sortby\" value=\"";
-        // line 257
-        echo twig_escape_filter($this->env, (isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 257, $this->source); })()), "html", null, true);
+        // line 259
+        echo twig_escape_filter($this->env, (isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 259, $this->source); })()), "html", null, true);
         echo "-";
-        echo twig_escape_filter($this->env, (isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 257, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 259, $this->source); })()), "html", null, true);
         echo "\"> 
                       <input type=\"hidden\" name=\"searchBy\" value=\"";
-        // line 258
-        echo twig_escape_filter($this->env, (isset($context["searchBy"]) || array_key_exists("searchBy", $context) ? $context["searchBy"] : (function () { throw new RuntimeError('Variable "searchBy" does not exist.', 258, $this->source); })()), "html", null, true);
+        // line 260
+        echo twig_escape_filter($this->env, (isset($context["searchBy"]) || array_key_exists("searchBy", $context) ? $context["searchBy"] : (function () { throw new RuntimeError('Variable "searchBy" does not exist.', 260, $this->source); })()), "html", null, true);
         echo "\" >                            
                       <div class=\"col-auto\">
                           <select name=\"limit\" class=\"form-select form-select-sm pagination-limit js-pagination-limit\" aria-label=\"Bulk actions\">
                               <option value=\"5\" ";
-        // line 261
-        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 261, $this->source); })()) == 5)) {
+        // line 263
+        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 263, $this->source); })()) == 5)) {
             echo "selected";
         }
         echo " >5 / Page</option>
                               <option value=\"10\" ";
-        // line 262
-        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 262, $this->source); })()) == 10)) {
+        // line 264
+        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 264, $this->source); })()) == 10)) {
             echo "selected";
         }
         echo " >10 / Page</option>
                               <option value=\"25\" ";
-        // line 263
-        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 263, $this->source); })()) == 25)) {
+        // line 265
+        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 265, $this->source); })()) == 25)) {
             echo "selected";
         }
         echo " >25 / Page</option>
                               <option value=\"50\" ";
-        // line 264
-        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 264, $this->source); })()) == 50)) {
+        // line 266
+        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 266, $this->source); })()) == 50)) {
             echo "selected";
         }
         echo " >50 / Page</option>
                               <option value=\"100\" ";
-        // line 265
-        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 265, $this->source); })()) == 100)) {
+        // line 267
+        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 267, $this->source); })()) == 100)) {
             echo "selected";
         }
         echo " >100 / Page</option>
@@ -830,7 +831,7 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
 
     public function getDebugInfo()
     {
-        return array (  512 => 265,  506 => 264,  500 => 263,  494 => 262,  488 => 261,  482 => 258,  476 => 257,  472 => 256,  468 => 255,  463 => 252,  457 => 248,  453 => 246,  436 => 235,  431 => 234,  426 => 233,  421 => 232,  416 => 231,  411 => 230,  407 => 229,  381 => 206,  367 => 195,  353 => 184,  339 => 173,  325 => 162,  311 => 151,  295 => 140,  280 => 127,  276 => 124,  267 => 120,  257 => 113,  251 => 110,  243 => 104,  238 => 103,  236 => 102,  224 => 93,  216 => 88,  206 => 83,  200 => 82,  191 => 78,  185 => 77,  176 => 73,  170 => 72,  161 => 68,  155 => 67,  134 => 49,  127 => 45,  123 => 43,  114 => 40,  106 => 37,  73 => 6,  66 => 5,  53 => 3,  36 => 1,);
+        return array (  513 => 267,  507 => 266,  501 => 265,  495 => 264,  489 => 263,  483 => 260,  477 => 259,  473 => 258,  469 => 257,  464 => 254,  458 => 250,  454 => 248,  437 => 237,  432 => 236,  427 => 235,  422 => 234,  417 => 233,  412 => 232,  408 => 231,  382 => 208,  368 => 197,  354 => 186,  340 => 175,  326 => 164,  312 => 153,  296 => 142,  281 => 129,  277 => 126,  268 => 122,  258 => 115,  252 => 112,  244 => 106,  239 => 105,  237 => 104,  225 => 95,  217 => 90,  207 => 85,  201 => 84,  192 => 80,  186 => 79,  177 => 75,  171 => 74,  162 => 70,  156 => 69,  135 => 51,  128 => 47,  124 => 45,  115 => 42,  107 => 39,  76 => 10,  73 => 6,  66 => 5,  53 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -841,7 +842,9 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
 
 {% block content %}
   <!-- start: basic forms -->
-        
+        {# <div class=\"loader\">
+            <img src=\"{{asset('assets/img/loading-1.gif')}}\" alt=\"\">
+        </div> #}
         <div class=\"card mb-3 page-main-content\">
        
           
