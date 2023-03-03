@@ -23,7 +23,10 @@ class SubscriptionFormType extends AbstractType
                 ]
              ])
             ->add('noOfClients')
-            ->add('noOfClientsLogin')
+            // ->add('noOfClientsLogin')
+            ->add('CAEmployeeAndOwnerLogin')
+            ->add('ClientOwnerAndEmployeeLogin')
+            ->add('ClientVendorLogin')
             ->add('noOfEmployee')
             ->add('noOfTransaction')
             ->add('storageSize')

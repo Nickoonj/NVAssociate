@@ -275,7 +275,7 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 <a href=\"/subscriptions/edit/";
                 // line 126
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "id", [], "any", false, false, false, 126), "html", null, true);
-                echo "\"><i class=\"fas fa-pencil-alt\"></i> Edit</a>&nbsp;&nbsp;
+                echo "\" class=\"js-edit-action\"><i class=\"fas fa-pencil-alt\"></i> Edit</a>&nbsp;&nbsp;
                                 ";
                 // line 129
                 echo "                            </div>
@@ -356,20 +356,7 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 </div>
                                 </div>
                             </div>
-                            <div class=\"col\">
-                                <div class=\"d-flex\">
-                                <div class=\"flex-shrink-0\">
-                                    <i class=\"fas fa-user-lock fs-1\"></i>
-                                </div>
-                                <div class=\"flex-grow-1 ms-2\">
-                                    <p class=\"mb-0 fs--1\">Client Login</p>
-                                    <p class=\"fw-semi-bold\">";
-                // line 197
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "noOfClientsLogin", [], "any", false, false, false, 197), "html", null, true);
-                echo "</p>
-                                </div>
-                                </div>
-                            </div>
+                            
                             <div class=\"col\">
                                 <div class=\"d-flex\">
                                 <div class=\"flex-shrink-0\">
@@ -378,8 +365,8 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 <div class=\"flex-grow-1 ms-2\">
                                     <p class=\"mb-0 fs--1\">Storage</p>
                                     <p class=\"fw-semi-bold\">";
-                // line 208
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "storageSize", [], "any", false, false, false, 208), "html", null, true);
+                // line 198
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "storageSize", [], "any", false, false, false, 198), "html", null, true);
                 echo " GB</p>
                                 </div>
                                 </div>
@@ -395,6 +382,32 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 </div>
                                 </div>
                             </div>
+                            <div class=\"col\"></div>
+                            <div class=\"col-md-6\">
+                                <div class=\"d-flex\">
+                                <div class=\"flex-shrink-0\">
+                                    <i class=\"fas fa-user-lock fs-1\"></i>
+                                </div>
+                                <div class=\"flex-grow-1 ms-2\">
+                                    <p class=\"mb-0 fs--1\">Users</p>
+                                    <ul class=\"ps-3 mt-1 fw-semi-bold mb-1\">
+                                      <li>CA Employee & OwnerLogin - ";
+                // line 222
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "CAEmployeeAndOwnerLogin", [], "any", false, false, false, 222), "html", null, true);
+                echo "</li>
+                                      <li>ClientOwner & Employee Login - ";
+                // line 223
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "ClientOwnerAndEmployeeLogin", [], "any", false, false, false, 223), "html", null, true);
+                echo "</li>
+                                      <li>Client Vendor Login - ";
+                // line 224
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["subscription"], "ClientVendorLogin", [], "any", false, false, false, 224), "html", null, true);
+                echo "</li>
+                                    </ul>
+                                    
+                                </div>
+                                </div>
+                            </div>
                             <div class=\"col\">
                                 <div class=\"d-flex\">
                                 <div class=\"flex-shrink-0\">
@@ -404,36 +417,36 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                     <p class=\"mb-0 fs--1\">Features</p>
                                     <ul class=\"ps-3 mt-1 fw-semi-bold mb-1\">
                                     ";
-                // line 231
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "taskManager", [], "any", false, false, false, 231) == 1)) {
+                // line 238
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "taskManager", [], "any", false, false, false, 238) == 1)) {
                     echo "<li>Task Manager</li>";
                 }
-                // line 232
+                // line 239
                 echo "                                    ";
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "fileManager", [], "any", false, false, false, 232) == 1)) {
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "fileManager", [], "any", false, false, false, 239) == 1)) {
                     echo "<li>File Manager</li>";
                 }
-                // line 233
+                // line 240
                 echo "                                    ";
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "eCommerce", [], "any", false, false, false, 233) == 1)) {
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "eCommerce", [], "any", false, false, false, 240) == 1)) {
                     echo "<li>E-Commerce</li>";
                 }
-                // line 234
+                // line 241
                 echo "                                    ";
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "templateCustomization", [], "any", false, false, false, 234) == 1)) {
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "templateCustomization", [], "any", false, false, false, 241) == 1)) {
                     echo "<li>Tamplate - Customization for import</li>";
                 }
-                // line 235
+                // line 242
                 echo "                                    ";
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "liveReportClientMobileApp", [], "any", false, false, false, 235) == 1)) {
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "liveReportClientMobileApp", [], "any", false, false, false, 242) == 1)) {
                     echo "<li>Live reports on client mobile app</li>";
                 }
-                // line 236
+                // line 243
                 echo "                                    ";
-                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "clientLoginApp", [], "any", false, false, false, 236) == 1)) {
+                if ((twig_get_attribute($this->env, $this->source, $context["subscription"], "clientLoginApp", [], "any", false, false, false, 243) == 1)) {
                     echo "<li>Client Login Mobile App</li>";
                 }
-                // line 237
+                // line 244
                 echo "
                                     </ul>
                                 </div>
@@ -450,67 +463,67 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['subscription'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 248
+            // line 255
             echo "        
                 ";
         } else {
-            // line 250
+            // line 257
             echo "                    <div class=\"card card-body mt-2 shadow-none bg-100 border mb-3\">
                         <h5>No Subscriptions Available!</h5>
                     </div>
                 ";
         }
-        // line 254
+        // line 261
         echo "                <div class=\"row flex-between-center\">
                   <div class=\"col-12\">
                     <div class=\"d-flex justify-content-end\">
                     ";
-        // line 257
-        echo $this->env->getRuntime('Pagerfanta\Twig\Extension\PagerfantaRuntime')->renderPagerfanta((isset($context["subscriptions"]) || array_key_exists("subscriptions", $context) ? $context["subscriptions"] : (function () { throw new RuntimeError('Variable "subscriptions" does not exist.', 257, $this->source); })()));
+        // line 264
+        echo $this->env->getRuntime('Pagerfanta\Twig\Extension\PagerfantaRuntime')->renderPagerfanta((isset($context["subscriptions"]) || array_key_exists("subscriptions", $context) ? $context["subscriptions"] : (function () { throw new RuntimeError('Variable "subscriptions" does not exist.', 264, $this->source); })()));
         echo "
                     <form action=\"";
-        // line 258
+        // line 265
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_subscriptions");
         echo "\" class=\"row gx-2\">
                       <input type=\"hidden\" name=\"sortby\" value=\"";
-        // line 259
-        echo twig_escape_filter($this->env, (isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 259, $this->source); })()), "html", null, true);
+        // line 266
+        echo twig_escape_filter($this->env, (isset($context["sortby"]) || array_key_exists("sortby", $context) ? $context["sortby"] : (function () { throw new RuntimeError('Variable "sortby" does not exist.', 266, $this->source); })()), "html", null, true);
         echo "-";
-        echo twig_escape_filter($this->env, (isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 259, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["order"]) || array_key_exists("order", $context) ? $context["order"] : (function () { throw new RuntimeError('Variable "order" does not exist.', 266, $this->source); })()), "html", null, true);
         echo "\"> 
                       <input type=\"hidden\" name=\"searchBy\" value=\"";
-        // line 260
-        echo twig_escape_filter($this->env, (isset($context["searchBy"]) || array_key_exists("searchBy", $context) ? $context["searchBy"] : (function () { throw new RuntimeError('Variable "searchBy" does not exist.', 260, $this->source); })()), "html", null, true);
+        // line 267
+        echo twig_escape_filter($this->env, (isset($context["searchBy"]) || array_key_exists("searchBy", $context) ? $context["searchBy"] : (function () { throw new RuntimeError('Variable "searchBy" does not exist.', 267, $this->source); })()), "html", null, true);
         echo "\" >                            
                       <div class=\"col-auto\">
                           <select name=\"limit\" class=\"form-select form-select-sm pagination-limit js-pagination-limit\" aria-label=\"Bulk actions\">
                               <option value=\"5\" ";
-        // line 263
-        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 263, $this->source); })()) == 5)) {
+        // line 270
+        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 270, $this->source); })()) == 5)) {
             echo "selected";
         }
         echo " >5 / Page</option>
                               <option value=\"10\" ";
-        // line 264
-        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 264, $this->source); })()) == 10)) {
+        // line 271
+        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 271, $this->source); })()) == 10)) {
             echo "selected";
         }
         echo " >10 / Page</option>
                               <option value=\"25\" ";
-        // line 265
-        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 265, $this->source); })()) == 25)) {
+        // line 272
+        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 272, $this->source); })()) == 25)) {
             echo "selected";
         }
         echo " >25 / Page</option>
                               <option value=\"50\" ";
-        // line 266
-        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 266, $this->source); })()) == 50)) {
+        // line 273
+        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 273, $this->source); })()) == 50)) {
             echo "selected";
         }
         echo " >50 / Page</option>
                               <option value=\"100\" ";
-        // line 267
-        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 267, $this->source); })()) == 100)) {
+        // line 274
+        if (((isset($context["limit"]) || array_key_exists("limit", $context) ? $context["limit"] : (function () { throw new RuntimeError('Variable "limit" does not exist.', 274, $this->source); })()) == 100)) {
             echo "selected";
         }
         echo " >100 / Page</option>
@@ -831,7 +844,7 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
 
     public function getDebugInfo()
     {
-        return array (  513 => 267,  507 => 266,  501 => 265,  495 => 264,  489 => 263,  483 => 260,  477 => 259,  473 => 258,  469 => 257,  464 => 254,  458 => 250,  454 => 248,  437 => 237,  432 => 236,  427 => 235,  422 => 234,  417 => 233,  412 => 232,  408 => 231,  382 => 208,  368 => 197,  354 => 186,  340 => 175,  326 => 164,  312 => 153,  296 => 142,  281 => 129,  277 => 126,  268 => 122,  258 => 115,  252 => 112,  244 => 106,  239 => 105,  237 => 104,  225 => 95,  217 => 90,  207 => 85,  201 => 84,  192 => 80,  186 => 79,  177 => 75,  171 => 74,  162 => 70,  156 => 69,  135 => 51,  128 => 47,  124 => 45,  115 => 42,  107 => 39,  76 => 10,  73 => 6,  66 => 5,  53 => 3,  36 => 1,);
+        return array (  526 => 274,  520 => 273,  514 => 272,  508 => 271,  502 => 270,  496 => 267,  490 => 266,  486 => 265,  482 => 264,  477 => 261,  471 => 257,  467 => 255,  450 => 244,  445 => 243,  440 => 242,  435 => 241,  430 => 240,  425 => 239,  421 => 238,  404 => 224,  400 => 223,  396 => 222,  369 => 198,  354 => 186,  340 => 175,  326 => 164,  312 => 153,  296 => 142,  281 => 129,  277 => 126,  268 => 122,  258 => 115,  252 => 112,  244 => 106,  239 => 105,  237 => 104,  225 => 95,  217 => 90,  207 => 85,  201 => 84,  192 => 80,  186 => 79,  177 => 75,  171 => 74,  162 => 70,  156 => 69,  135 => 51,  128 => 47,  124 => 45,  115 => 42,  107 => 39,  76 => 10,  73 => 6,  66 => 5,  53 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -961,7 +974,7 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 <label class=\"form-check-label mb-0\" for=\"fe_chk_1\">Active</label>
                                 </div>
                                 <span class=\"mx-2 text-400\">|</span>
-                                <a href=\"/subscriptions/edit/{{ subscription.id }}\"><i class=\"fas fa-pencil-alt\"></i> Edit</a>&nbsp;&nbsp;
+                                <a href=\"/subscriptions/edit/{{ subscription.id }}\" class=\"js-edit-action\"><i class=\"fas fa-pencil-alt\"></i> Edit</a>&nbsp;&nbsp;
                                 {# <a href=\"/subscriptions/delete/{{ subscription.id }}\" onclick=\"return confirm('Are you sure you want to delete this subscription?');\"><i class=\"fas fa-trash\"></i> Delete</a>
                                 <a class=\"fs--1 ms-1\" href=\"#\">(History)</a> #}
                             </div>
@@ -1025,17 +1038,7 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 </div>
                                 </div>
                             </div>
-                            <div class=\"col\">
-                                <div class=\"d-flex\">
-                                <div class=\"flex-shrink-0\">
-                                    <i class=\"fas fa-user-lock fs-1\"></i>
-                                </div>
-                                <div class=\"flex-grow-1 ms-2\">
-                                    <p class=\"mb-0 fs--1\">Client Login</p>
-                                    <p class=\"fw-semi-bold\">{{ subscription.noOfClientsLogin }}</p>
-                                </div>
-                                </div>
-                            </div>
+                            
                             <div class=\"col\">
                                 <div class=\"d-flex\">
                                 <div class=\"flex-shrink-0\">
@@ -1055,6 +1058,23 @@ class __TwigTemplate_f5bc9833f004fac3066583c244c729f2 extends Template
                                 <div class=\"flex-grow-1 ms-2\">
                                     <p class=\"mb-0 fs--1\">Subscribers</p>
                                     <p class=\"fw-semi-bold\">0</p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class=\"col\"></div>
+                            <div class=\"col-md-6\">
+                                <div class=\"d-flex\">
+                                <div class=\"flex-shrink-0\">
+                                    <i class=\"fas fa-user-lock fs-1\"></i>
+                                </div>
+                                <div class=\"flex-grow-1 ms-2\">
+                                    <p class=\"mb-0 fs--1\">Users</p>
+                                    <ul class=\"ps-3 mt-1 fw-semi-bold mb-1\">
+                                      <li>CA Employee & OwnerLogin - {{ subscription.CAEmployeeAndOwnerLogin }}</li>
+                                      <li>ClientOwner & Employee Login - {{ subscription.ClientOwnerAndEmployeeLogin }}</li>
+                                      <li>Client Vendor Login - {{ subscription.ClientVendorLogin }}</li>
+                                    </ul>
+                                    
                                 </div>
                                 </div>
                             </div>

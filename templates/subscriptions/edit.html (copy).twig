@@ -86,30 +86,13 @@
               </div>
               <div class="row">
                 <div class="col-auto">
-                  <label class="form-label" style="min-width:180px;" for="">Users</label>
+                  <label class="form-label" style="min-width:180px;" for="">No Of Client Login</label>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4 ">
-                  <div class="input-group mb-3 {% if form_errors(form.CAEmployeeAndOwnerLogin)|length > 0 %} div-form-error{% endif %}">
-                    {{ form_widget(form.CAEmployeeAndOwnerLogin, {'attr': {'class': 'form-control','min':'1','aria-describedby':'basic-addon2'}}) }}
-                    <span class="input-group-text" id="basic-addon2">CA Employee & OwnerLogin</span>
-                  </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.noOfClientsLogin)|length > 0 %} div-form-error{% endif %}">
+                  {{ form_widget(form.noOfClientsLogin, {'attr': {'class': 'form-control mb-3','min':'1'}}) }}
                   <div class="form-error">
-                    {{ form_errors(form.CAEmployeeAndOwnerLogin) }}
-                  </div>
-                  <div class="input-group mb-3 {% if form_errors(form.ClientOwnerAndEmployeeLogin)|length > 0 %} div-form-error{% endif %}">
-                    {{ form_widget(form.ClientOwnerAndEmployeeLogin, {'attr': {'class': 'form-control','min':'1','aria-describedby':'basic-addon2'}}) }}
-                    <span class="input-group-text" id="basic-addon2">ClientOwner & Employee Login</span>
-                  </div>
-                  <div class="form-error">
-                    {{ form_errors(form.ClientOwnerAndEmployeeLogin) }}
-                  </div>
-                  <div class="input-group mb-3 {% if form_errors(form.ClientVendorLogin)|length > 0 %} div-form-error{% endif %}">
-                    {{ form_widget(form.ClientVendorLogin, {'attr': {'class': 'form-control','min':'1','aria-describedby':'basic-addon2'}}) }}
-                    <span class="input-group-text" id="basic-addon2">Client Vendor Login</span>
-                  </div>
-                  <div class="form-error">
-                    {{ form_errors(form.ClientVendorLogin) }}
-                  </div>
+                    {{ form_errors(form.noOfClientsLogin) }}
+                 </div>
                 </div>
               </div>
               <div class="row">

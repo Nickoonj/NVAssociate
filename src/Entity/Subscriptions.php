@@ -31,7 +31,7 @@ class Subscriptions
 
     #[ORM\Column]
     #[Assert\NotBlank]
-    private ?int $noOfClientsLogin = null;
+    private ?int $noOfClientsLogin = 0;
 
     #[ORM\Column]
     #[Assert\NotBlank]
@@ -81,6 +81,15 @@ class Subscriptions
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $deletedAt = null;
+
+    #[ORM\Column]
+    private ?int $CAEmployeeAndOwnerLogin = 0;
+
+    #[ORM\Column]
+    private ?int $ClientOwnerAndEmployeeLogin = 0;
+
+    #[ORM\Column]
+    private ?int $ClientVendorLogin = 0;
 
     public function __construct()
     {
@@ -328,6 +337,42 @@ class Subscriptions
     public function setDeletedAt(?\DateTimeImmutable $deletedAt): self
     {
         $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    public function getCAEmployeeAndOwnerLogin(): ?int
+    {
+        return $this->CAEmployeeAndOwnerLogin;
+    }
+
+    public function setCAEmployeeAndOwnerLogin(int $CAEmployeeAndOwnerLogin): self
+    {
+        $this->CAEmployeeAndOwnerLogin = $CAEmployeeAndOwnerLogin;
+
+        return $this;
+    }
+
+    public function getClientOwnerAndEmployeeLogin(): ?int
+    {
+        return $this->ClientOwnerAndEmployeeLogin;
+    }
+
+    public function setClientOwnerAndEmployeeLogin(int $ClientOwnerAndEmployeeLogin): self
+    {
+        $this->ClientOwnerAndEmployeeLogin = $ClientOwnerAndEmployeeLogin;
+
+        return $this;
+    }
+
+    public function getClientVendorLogin(): ?int
+    {
+        return $this->ClientVendorLogin;
+    }
+
+    public function setClientVendorLogin(int $ClientVendorLogin): self
+    {
+        $this->ClientVendorLogin = $ClientVendorLogin;
 
         return $this;
     }
