@@ -1,0 +1,328 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% block title %}Dashboard | Superadmin!{% endblock %}
+
+{% block content %}  
+        <div class="card mb-3 page-main-content">
+                 
+          <div class="card-body">
+
+            <div class="position-relative">
+              <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link  ps-0 js-change-tab" data-bs-toggle="tab" href="#tab_1" role="tab" data-url="{{path('app_subscriptions')}}">Subscription</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active px-2 px-md-3 js-change-tab" data-bs-toggle="tab" href="#tab_2" role="tab" data-url="{{path('app_subscriptions')}}">AddOns</a>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="tab-content" id="myTabContent">
+              {% for message in app.flashes('success') %}                
+                <div class="alert alert-success border-2 d-flex align-items-center" role="alert">
+                  <div class="bg-success me-3 icon-item"><span class="fas fa-check-circle text-white fs-3"></span></div>
+                  <p class="mb-0 flex-1">{{ message }}</p><button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endfor %}
+              
+              
+
+              <div class="tab-pane fade show active" id="tab_2" role="tabpanel">
+                <form action="{{ path('app_addons') }}" class="row gx-2" id="js-filter-form">
+                  <div class="d-flex align-items-center w-100 mb-3">
+                    <div class="me-auto">
+                      <div class="search-box search_inputform w-auto">
+                        <input type="text" name="searchBy" value="{{searchBy}}" class="form-control form-control-sm search-input js-search-input" placeholder="Search"
+                          style="border-radius: 0.25rem;">
+                        <span class="fas fa-search search-box-icon"></span>
+                      </div>
+                    </div>
+                    <div class="ms-auto">                      
+                      <a href="javascript:void();" class="btn-link text-decoration-none js-filter-types"><span
+                          style="min-width: 100px; padding-right: 5px;">Select AddOn Type</span> <i
+                          class="fas fa-angle-down"></i></a>                      
+                      <!-- <button type="button" class="btn btn-falcon-default btn-sm" ></button> -->
+                    </div>
+                    <div class="ms-auto">                      
+                      <a href="javascript:void();" class="btn-link text-decoration-none js-filter"><span
+                          style="min-width: 100px; padding-right: 5px;">Sort By</span> <i
+                          class="fas fa-angle-down"></i></a>
+                      
+                      <!-- <button type="button" class="btn btn-falcon-default btn-sm" ></button> -->
+                    </div>
+                  </div>
+                  <div id="filter_box" class="fl_filter_box fl_filter_close">                  
+                    <div class="g-2 row row-cols-md-4 ">
+
+                        <div class="col">
+                          <h6>Latest</h6>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault3" type="radio" name="sortby" value="a.createdAt-ASC" {% if (sortby == 'a.createdAt') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault3">Asc</label></div>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault4" type="radio" name="sortby" value="a.createdAt-DESC" {% if (sortby == 'a.createdAt') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault4">Desc</label></div>
+                        </div>
+                        <div class="col">
+                          <h6>Name</h6>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault1" type="radio" name="sortby" value="a.addOnTitle-ASC" {% if (sortby == 'a.addOnTitle') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault1">Asc</label></div>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault2" type="radio" name="sortby" value="a.addOnTitle-DESC" {% if (sortby == 'a.addOnTitle') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault2">Desc</label></div>
+                        </div>                      
+                        <div class="col">
+                          <h6>Price</h6>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault5" type="radio" name="sortby" value="a.Price-ASC" {% if (sortby == 'a.Price') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault5">Lowest</label></div>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault6" type="radio" name="sortby" value="a.Price-DESC" {% if (sortby == 'a.Price') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault6">Highest</label></div>
+                        </div>                    
+                        <div class="col">
+                          <h6>Subscribers</h6>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault7" type="radio" name="sortby" value="a.subscribers-ASC" {% if (sortby == 'a.subscribers') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault7">Lowest</label></div>
+                          <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault8" type="radio" name="sortby" value="a.subscribers-DESC" {% if (sortby == 'a.subscribers') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault8">Highest</label></div>
+                        </div>                      
+                      
+                    </div>                                                                      
+                  </div>
+                  <div id="filter_box_types" class="fl_filter_box fl_filter_close">                  
+                    <div class="g-2 row row-cols-md-4 ">
+
+                        <div class="col-md-12">
+                          <div class="form-check form-check-inline"><input class="form-check-input js-category" id="category1" type="radio" name="category" value="" {% if filterBy == null %}checked=""{% endif %}/><label class="form-check-label" for="inlineRadio1">All</label></div>
+                          <div class="form-check form-check-inline"><input class="form-check-input js-category" id="category2" type="radio" name="category" value="1" {% if filterBy == '1' %}checked=""{% endif %}/><label class="form-check-label" for="inlineRadio2">Storage Space</label></div>
+                          <div class="form-check form-check-inline"><input class="form-check-input js-category" id="category3" type="radio" name="category" value="2" {% if filterBy == '2' %}checked=""{% endif %}/><label class="form-check-label" for="inlineRadio3">No. Of Clients</label></div>
+                          <div class="form-check form-check-inline"><input class="form-check-input js-category" id="category4" type="radio" name="category" value="3" {% if filterBy == '3' %}checked=""{% endif %}/><label class="form-check-label" for="inlineRadio4">No. Of Employees</label></div>
+                          <div class="form-check form-check-inline"><input class="form-check-input js-category" id="category5" type="radio" name="category" value="4" {% if filterBy == '4' %}checked=""{% endif %}/><label class="form-check-label" for="inlineRadio5">No. Of Client Login</label></div>
+                          <div class="form-check form-check-inline"><input class="form-check-input js-category" id="category6" type="radio" name="category" value="5" {% if filterBy == '5' %}checked=""{% endif %}/><label class="form-check-label" for="inlineRadio6">No. Of Transactions</label></div>
+                          <div class="form-check form-check-inline"><input class="form-check-input js-category" id="category7" type="radio" name="category" value="6" {% if filterBy == '6' %}checked=""{% endif %}/><label class="form-check-label" for="inlineRadio6">Features List</label></div>
+                        </div>
+                                       
+                      
+                    </div>                                                                      
+                  </div>
+                  <input type="hidden" name="limit" value="{{limit}}"> 
+                </form>  
+                <div class="row flex-between-center">
+                    
+                    <div class="col-sm-12 mb-2 mb-sm-0">
+                      <a href="{{path('create_addons')}}">
+                        <button class="btn btn-primary me-1 mb-1 mt-1 pull-right" type="button">
+                          <span class="fas fa-plus me-1" data-fa-transform="shrink-3"></span>New
+                        </button>
+                      </a>
+                      
+                    </div>
+                </div> 
+                {% if addons|length > 0 %}
+                    {% for addon in addons %}
+                    
+                    <div class="card card-body mt-2 shadow-none bg-100 border mb-3">
+                        <div class="d-flex w-100">
+                            <div class="me-auto">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                <span class="cli_no bg-primary text-white fw-bold">{{ addon.id }}</span>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                <h5 class="mb-0">{{ addon.addOnTitle }}</h5>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="ms-auto">
+                            <div class="d-flex align-items-center">
+                                <div class="form-check form-switch mb-0">
+                                <input class="form-check-input" id="fe_chk_1" type="checkbox" {% if addon.status == 1 %}checked {% endif %}/>
+                                <label class="form-check-label mb-0" for="fe_chk_1">Active</label>
+                                </div>
+                                <span class="mx-2 text-400">|</span>
+                                <a href="/addons/edit/{{ addon.id }}" class="js-edit-action"><i class="fas fa-pencil-alt"></i> Edit</a>&nbsp;&nbsp;                                
+                            </div>
+
+                            </div>
+                        </div>
+                        <div class="ms-4 mt-3">
+                            <div class="row row-cols-1 row-cols-sm-4 row-col-md-4">
+                            <div class="col">
+                                <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-money-bill"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Price</p>
+                                    <p class="mb-0 fw-semi-bold">{{ addon.price }}/-</p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="far fa-clock fs-1"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Validity</p>
+                                    <p class="fw-semi-bold">{{ addon.time }} {{ addon.monthDay }} </p>
+                                </div>
+                                </div>
+                            </div>
+                                                                                                              
+                            <div class="col">
+                                <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-users fs-1"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Subscribers</p>
+                                    <p class="fw-semi-bold">{{addon.addOnType.id}}</p>
+                                </div>
+                                </div>
+                            </div>
+                            {% if addon.addOnType.id == 1 %}
+                              <div class="col">
+                                <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-database fs-1"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Storage</p>
+                                    {% if addon.addOnTypeJson != '' %}
+                                    {% set res = addon.addOnTypeJson|twig_json_decode %}
+                                      <p class="fw-semi-bold">{{ res.size}} GB</p>
+                                    {% else %}
+                                      <p class="fw-semi-bold">0 GB</p>
+                                    {% endif %}
+                                </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if addon.addOnType.id == '2' %}
+                            <div class="col">
+                                <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-user fs-1"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">No. Of Clients</p>
+                                    {% if addon.addOnTypeJson != '' %}
+                                    {% set res = addon.addOnTypeJson|twig_json_decode %}
+                                      <p class="fw-semi-bold">{{ res.size}}</p>
+                                    {% else %}
+                                      <p class="fw-semi-bold">0</p>
+                                    {% endif %}
+                                </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if addon.addOnType.id == '3' %}
+                            <div class="col">
+                                <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-user-friends fs-1"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">No. Of Employees</p>
+                                    {% if addon.addOnTypeJson != '' %}
+                                    {% set res = addon.addOnTypeJson|twig_json_decode %}
+                                      <p class="fw-semi-bold">{{ res.size}}</p>
+                                    {% else %}
+                                      <p class="fw-semi-bold">0</p>
+                                    {% endif %}
+                                </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if addon.addOnType.id == '4' %}
+                            <div class="col">
+                                <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-user-lock fs-1"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">No. Of Client Login</p>
+                                    {% if addon.addOnTypeJson != '' %}
+                                    {% set res = addon.addOnTypeJson|twig_json_decode %}
+                                      <p class="fw-semi-bold">{{ res.size}}</p>
+                                    {% else %}
+                                      <p class="fw-semi-bold">0</p>
+                                    {% endif %}
+                                </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if addon.addOnType.id == '5' %}
+                            <div class="col">
+                                <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="far fa-list-alt fs-1"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">No. Of Transactions</p>
+                                    {% if addon.addOnTypeJson != '' %}
+                                    {% set res = addon.addOnTypeJson|twig_json_decode %}
+                                      <p class="fw-semi-bold">{{ res.size}}</p>
+                                    {% else %}
+                                      <p class="fw-semi-bold">0</p>
+                                    {% endif %}
+                                </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if addon.addOnType.id == '6' %}
+                            <div class="col">
+                                <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-cubes fs-1"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Features List</p>
+                                    {% if addon.addOnTypeJson != '' %}
+                                    {% set res = addon.addOnTypeJson|twig_json_decode %}
+                                      <ul class="ps-3 mt-1 fw-semi-bold mb-1">
+                                    {% if res.Task_Manager == 'on' %}<li>Task Manager</li>{% endif %}
+                                    {% if res.File_Manager == 'on' %}<li>File Manager</li>{% endif %}
+                                    {% if res.E_Commerce == 'on' %}<li>E-Commerce</li>{% endif %}
+                                    {% if res.Template_Customization == 'on' %}<li>Tamplate - Customization for import</li>{% endif %}
+                                    {% if res.Live_Report_Client_Mobile_App == 'on' %}<li>Live reports on client mobile app</li>{% endif %}
+                                    
+                                    {% else %}
+                                      <p class="fw-semi-bold"></p>
+                                    {% endif %}
+                                </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}        
+                {% else %}
+                    <div class="card card-body mt-2 shadow-none bg-100 border mb-3">
+                        <h5>No Addons Available!</h5>
+                    </div>
+                {% endif %}
+                <div class="row flex-between-center">
+                  <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                    {{ pagerfanta(addons) }}
+                    <form action="{{ path('app_subscriptions') }}" class="row gx-2">
+                      <input type="hidden" name="sortby" value="{{sortby}}-{{order}}"> 
+                      <input type="hidden" name="searchBy" value="{{searchBy}}" >                            
+                      <div class="col-auto">
+                          <select name="limit" class="form-select form-select-sm pagination-limit js-pagination-limit" aria-label="Bulk actions">
+                              <option value="5" {% if limit == 5 %}selected{% endif %} >5 / Page</option>
+                              <option value="10" {% if limit == 10 %}selected{% endif %} >10 / Page</option>
+                              <option value="25" {% if limit == 25 %}selected{% endif %} >25 / Page</option>
+                              <option value="50" {% if limit == 50 %}selected{% endif %} >50 / Page</option>
+                              <option value="100" {% if limit == 100 %}selected{% endif %} >100 / Page</option>
+                            </select>
+                      </div>                                             
+                    </form>
+                    </div>
+                  </div>
+                  
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        
+{% endblock %}

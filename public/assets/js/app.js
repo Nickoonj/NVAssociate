@@ -40,11 +40,13 @@ $(document).ready(function (e) {
         return false;
      });
      
-     $("body").on('change', '.js-sortby',function(event){      
+     $("body").on('change', '.js-sortby',function(event){    
         var u = $(this).closest('form').attr('action');
         var m = 'GET';
         let formData = $(this).closest('form').serialize();
-        
+        console.log(u);
+        console.log(m);
+        console.log(formData);
         jQuery.ajax({
             url: u,
             type: m,
@@ -85,6 +87,27 @@ $(document).ready(function (e) {
         e.preventDefault();
     });
     
+    $("body").on('change', '.js-category',function(event){      
+        var u = $(this).closest('form').attr('action');
+        var m = 'GET';
+        let formData = $(this).closest('form').serialize();
+        
+        jQuery.ajax({
+            url: u,
+            type: m,
+            data: formData,            
+            success: function(html) {                
+                $('.page-main-content').replaceWith(
+                    $(html).find('.page-main-content')
+                );               
+            },
+            error: function(xhr, err) {
+                $(this).closest('form').submit();
+            }
+        });
+        return false;
+     });
+
     $("body").on('submit','#js-filter-form', function (e) {  
         e.preventDefault();  
     });
@@ -92,19 +115,21 @@ $(document).ready(function (e) {
     var t = "on";
     $("body").on('click', '.js-filter',function(event){ 
         
-        if (t === "off") {
-            // $(dd).children('span').text("Show Filter");
+        if (t === "off") {            
             $(event).children('span').text("Advance Search");
             t = "on";
           }
-          else {
-            // $(dd).children('span').text("Hide Filter");
+          else {           
             $(event).children('span').text("Advance Search");
             t = "off";
           }
           $(event).toggleClass('fltIc_rotate');
           $('#filter_box').toggleClass('fl_filter_close');
     });  
+    $("body").on('click', '.js-filter-types',function(event){                 
+          $(event).toggleClass('fltIc_rotate');
+          $('#filter_box_types').toggleClass('fl_filter_close');
+    }); 
     
     // $("body").on('click', '.js-edit-action',function(event){                
     //     var u = $(this).attr('href');
@@ -125,5 +150,22 @@ $(document).ready(function (e) {
     //     return false;
     //  });
      
-    
+    $("body").on('click', '.js-change-tab',function(event){                
+        var u = $(this).attr('data-url');
+        var m = 'GET';
+        
+        jQuery.ajax({
+            url: u,
+            type: m,            
+            success: function(html) {                
+                $('.page-main-content').replaceWith(
+                    $(html).find('.page-main-content')
+                );               
+            },
+            error: function(xhr, err) {
+                window.location = u;
+            }
+        });
+        return false;
+     });
 });

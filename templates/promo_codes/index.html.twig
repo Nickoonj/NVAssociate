@@ -1,0 +1,245 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% block title %}Dashboard | Superadmin!{% endblock %}
+
+{% block content %}  
+        <div class="card mb-3 page-main-content">          
+          <div class="card-header position-relative d-flex" style="min-height:90px;">
+            <div class="d-flex align-items-center w-100">
+              <div class="me-auto">
+                <h5 class="my-2 text-white position-relative z-index-1">Promo Code</h5>
+              </div>
+              <div class="ms-auto z-index-1">
+                <a href="{{path('create_promocodes')}}"><button class="btn btn-outline-white"type="button"><span class="fas fa-plus me-1" data-fa-transform="shrink-3"></span>New</button></a>
+              </div>
+            </div>
+            <div class="bg-holder rounded-3 rounded-bottom-0" style="background-image:url(assets/img/generic/4.jpg);"></div>
+          </div>
+          <div class="card-body">
+            {% for message in app.flashes('success') %}                
+                <div class="alert alert-success border-2 d-flex align-items-center" role="alert">
+                  <div class="bg-success me-3 icon-item"><span class="fas fa-check-circle text-white fs-3"></span></div>
+                  <p class="mb-0 flex-1">{{ message }}</p><button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endfor %}
+              <form action="{{ path('app_promo_codes') }}" class="row gx-2" id="js-filter-form">
+                    <div class="d-flex align-items-center w-100 mb-3">
+                      <div class="me-auto">
+                        <div class="search-box search_inputform w-auto">
+                          <input type="text" name="searchBy" value="{{searchBy}}" class="form-control form-control-sm search-input js-search-input" placeholder="Search"
+                            style="border-radius: 0.25rem;">
+                          <span class="fas fa-search search-box-icon"></span>
+                        </div>
+                      </div>
+                      <div class="ms-auto">
+                        <a href="javascript:void();" class="btn-link text-decoration-none js-filter"><span
+                            style="min-width: 100px; padding-right: 5px;">Sort By</span> <i
+                            class="fas fa-angle-down"></i></a>
+                        <!-- <button type="button" class="btn btn-falcon-default btn-sm" ></button> -->
+
+                      </div>
+                    </div>
+                    <div id="filter_box" class="fl_filter_box fl_filter_close">                  
+                      <div class="g-2 row row-cols-md-4 ">
+
+                          <div class="col">
+                            <h6>Latest</h6>
+                            <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault3" type="radio" name="sortby" value="p.createdAt-ASC" {% if (sortby == 'p.createdAt') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault3">Asc</label></div>
+                            <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault4" type="radio" name="sortby" value="p.createdAt-DESC" {% if (sortby == 'p.createdAt') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault4">Desc</label></div>
+                          </div>
+                          <div class="col">
+                            <h6>Name</h6>
+                            <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault1" type="radio" name="sortby" value="p.promoName-ASC" {% if (sortby == 'p.promoName') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault1">Asc</label></div>
+                            <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault2" type="radio" name="sortby" value="p.promoName-DESC" {% if (sortby == 'p.promoName') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault2">Desc</label></div>
+                          </div>                      
+                          <div class="col">
+                            <h6>Maximum Discount</h6>
+                            <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault5" type="radio" name="sortby" value="p.maximumDiscountAmount-ASC" {% if (sortby == 'p.maximumDiscountAmount') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault5">Lowest</label></div>
+                            <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault6" type="radio" name="sortby" value="p.maximumDiscountAmount-DESC" {% if (sortby == 'p.maximumDiscountAmount') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault6">Highest</label></div>
+                          </div>                    
+                          <div class="col">
+                            <h6>Maximum Order Value</h6>
+                            <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault7" type="radio" name="sortby" value="p.maximumOrderValue-ASC" {% if (sortby == 'p.maximumOrderValue') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault7">Lowest</label></div>
+                            <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault8" type="radio" name="sortby" value="p.maximumOrderValue-DESC" {% if (sortby == 'p.maximumOrderValue') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault8">Highest</label></div>
+                          </div>
+                          <div class="col">
+                            <h6>Start</h6>
+                            <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault9" type="radio" name="sortby" value="p.startDate-ASC" {% if (sortby == 'p.startDate') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault9">Asc</label></div>
+                            <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault10" type="radio" name="sortby" value="p.startDate-DESC" {% if (sortby == 'p.startDate') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault10">Desc</label></div>
+                          </div>
+                          <div class="col">
+                            <h6>End</h6>
+                            <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault11" type="radio" name="sortby" value="p.endDate-ASC" {% if (sortby == 'p.endDate') and (order == 'ASC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault11">Asc</label></div>
+                            <div class="form-check"><input class="form-check-input js-sortby" id="flexRadioDefault12" type="radio" name="sortby" value="p.endDate-DESC" {% if (sortby == 'p.endDate') and (order == 'DESC') %}checked=""{% endif %}/><label class="form-check-label" for="flexRadioDefault12">Desc</label></div>
+                          </div>
+                                            
+                        
+                      </div>                                                                      
+                    </div>
+                    <input type="hidden" name="limit" value="{{limit}}"> 
+                  </form>  
+                  {# <div class="row flex-between-center">
+                      
+                      <div class="col-sm-12 mb-2 mb-sm-0">
+                        <a href="{{path('create_subscriptions')}}">
+                          <button class="btn btn-primary me-1 mb-1 mt-1 pull-right" type="button">
+                            <span class="fas fa-plus me-1" data-fa-transform="shrink-3"></span>New
+                          </button>
+                        </a>
+                        
+                      </div>
+                  </div>   #}
+              {% if promocodes|length > 0 %}
+                {% for promocode in promocodes %}
+                  <div class="card card-body mt-2 shadow-none bg-100 border mb-3">
+                    <div class="d-flex w-100">
+                      <div class="me-auto">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0">
+                            <span class="cli_no bg-primary text-white fw-bold">{{ promocode.id }}</span>
+                          </div>
+                          <div class="flex-grow-1 ms-2">
+                            <h5 class="mb-0">{{promocode.promoName}}</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ms-auto">
+                        <div class="d-flex align-items-center">
+                          <div class="form-check form-switch mb-0">
+                            <input class="form-check-input" id="fe_chk_1" type="checkbox" checked />
+                            <label class="form-check-label mb-0" for="fe_chk_1">Active</label>
+                          </div>
+                          <span class="mx-2 text-400">|</span>
+                          <a href="/promocodes/edit/{{ promocode.id }}"><i class="fas fa-pencil-alt"></i> Edit</a>
+                          <a class="fs--1 ms-1" href="#">(History)</a>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="ms-4 mt-3">
+                      <div class="row row-cols-1 row-cols-sm-4 row-col-md-4">
+
+                        <div class="col">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0">
+                              <i class="fas fa-info-circle fs-1"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-2">
+                              <p class="mb-0 fs--1 fw-semi-bold">{{promocode.promoDescription}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0">
+                              <i class="far fa-clock fs-1"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-2">
+                              <p class="mb-0 fs--1">Start</p>
+                              <p class="fw-semi-bold">{{promocode.startDate|date('Y-m-d H:i:s')}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0">
+                              <i class="far fa-clock fs-1"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-2">
+                              <p class="mb-0 fs--1">End</p>
+                              <p class="fw-semi-bold">{{promocode.endDate|date('Y-m-d H:i:s')}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0">
+                              <i class="fas fa-tag fs-1"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-2">
+                              <p class="mb-0 fs--1">Maximum Discount</p>
+                              <p class="fw-semi-bold">{{promocode.maximumDiscountAmount}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0">
+                              <i class="fas fa-clipboard-list fs-1"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-2">
+                              <p class="mb-0 fs--1">Maximum Order Value</p>
+                              <p class="fw-semi-bold">{{promocode.maximumOrderValue}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0">
+                              <i class="fas fa-business-time fs-1"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-2">
+                              <p class="mb-0 fs--1">Use of code</p>
+                              <p class="fw-semi-bold">{{promocode.lifeOfCode}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0">
+                              <i class="fas fa-user-clock fs-1"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-2">
+                              <p class="mb-0 fs--1">Use per user</p>
+                              <p class="fw-semi-bold">{{promocode.usePerUser}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0">
+                              <i class="far fa-clock fs-1"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-2">
+                              <p class="mb-0 fs--1">Time Utilized</p>
+                              <p class="fw-semi-bold">0</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}        
+              {% else %}
+                <div class="card card-body mt-2 shadow-none bg-100 border mb-3">
+                    <h5>No Promo Code Available!</h5>
+                </div>
+              {% endif %}
+              <div class="row flex-between-center">
+                  <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                    {{ pagerfanta(promocodes) }}
+                    <form action="{{ path('app_subscriptions') }}" class="row gx-2">
+                      <input type="hidden" name="sortby" value="{{sortby}}-{{order}}"> 
+                      <input type="hidden" name="searchBy" value="{{searchBy}}" >                            
+                      <div class="col-auto">
+                          <select name="limit" class="form-select form-select-sm pagination-limit js-pagination-limit" aria-label="Bulk actions">
+                              <option value="5" {% if limit == 5 %}selected{% endif %} >5 / Page</option>
+                              <option value="10" {% if limit == 10 %}selected{% endif %} >10 / Page</option>
+                              <option value="25" {% if limit == 25 %}selected{% endif %} >25 / Page</option>
+                              <option value="50" {% if limit == 50 %}selected{% endif %} >50 / Page</option>
+                              <option value="100" {% if limit == 100 %}selected{% endif %} >100 / Page</option>
+                            </select>
+                      </div>                                             
+                    </form>
+                    </div>
+                  </div>
+                  
+                </div>
+            
+           
+
+          </div>
+        </div>
+        
+{% endblock %}

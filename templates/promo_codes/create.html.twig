@@ -1,0 +1,207 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% block title %}Dashboard | Superadmin!{% endblock %}
+
+{% block content %}
+  <!-- start: basic forms -->
+        <div class="card mb-3">
+          <div class="card-header position-relative d-flex" style="min-height:90px;">
+            <div class="d-flex align-items-center w-100">
+              <div class="me-auto">
+                <h5 class="my-2 text-white position-relative z-index-1">Add Promo Code</h5>
+              </div>
+
+            </div>
+            <div class="bg-holder rounded-3 rounded-bottom-0" style="background-image:url(/assets/img/generic/4.jpg);"></div>
+          </div>
+          <div class="card-body bg-light">
+            {{ form_start(form) }}
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">Coupon Code Name</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.promoName)|length > 0 %} div-form-error{% endif %}">
+                  {{ form_widget(form.promoName, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <div class="form-error">
+                    {{ form_errors(form.promoName) }}
+                 </div>
+                </div>
+                
+              </div>                            
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">Coupon Description</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.promoDescription)|length > 0 %} div-form-error{% endif %}">
+                  {{ form_widget(form.promoDescription, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <div class="form-error">
+                    {{ form_errors(form.promoDescription) }}
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">Coupon Type</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.promoType)|length > 0 %} div-form-error{% endif %}">
+                  {{ form_widget(form.promoType, {'attr': {'class': 'form-select form-select-sm mb-3'}}) }}
+                  <div class="form-error">
+                    {{ form_errors(form.promoType) }}
+                 </div>
+                </div>
+              </div>              
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">Discount Amount</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.discountAmount)|length > 0 %} div-form-error{% endif %}">
+                  {{ form_widget(form.discountAmount, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <div class="form-error">
+                    {{ form_errors(form.discountAmount) }}
+                 </div>
+                </div>
+              </div>             
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">Maximum Discount Value</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.maximumDiscountAmount)|length > 0 %} div-form-error{% endif %}">
+                  {{ form_widget(form.maximumDiscountAmount, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <div class="form-error">
+                    {{ form_errors(form.maximumDiscountAmount) }}
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">Maximum Order Value</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.maximumOrderValue)|length > 0 %} div-form-error{% endif %}">
+                  {{ form_widget(form.maximumOrderValue, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <div class="form-error">
+                    {{ form_errors(form.maximumOrderValue) }}
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">Start Date & Time</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.startDate)|length > 0 %} div-form-error{% endif %}">
+                  <div class="d-flex">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2"><i class="fa fa-calendar"></i></span>
+                        {{ form_widget(form.startDate, {'attr': {'class': 'form-control datetimepicker','aria-describedby':'basic-addon2','placeholder':'d/m/y','data-options':'{disableMobile:true}'}}) }}                    
+                    </div>                    
+                    <div class="mb-3 ms-3" style="max-width: 90px;">
+                        {{ form_widget(form.startTime, {'attr': {'class': 'form-control datetimepicker','placeholder':'H:i','data-options':'{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true}'}}) }}
+                    </div>
+                  </div>
+                  <div class="form-error">
+                    {{ form_errors(form.startDate) }}
+                  </div>
+                </div>    
+              </div>
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">End Date & Time</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.endDate)|length > 0 %} div-form-error{% endif %}">
+                  <div class="d-flex">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2"><i class="fa fa-calendar"></i></span>
+                        {{ form_widget(form.endDate, {'attr': {'class': 'form-control datetimepicker','aria-describedby':'basic-addon2','placeholder':'d/m/y','data-options':'{disableMobile:true}'}}) }}                    
+                    </div>
+                    <div class="mb-3 ms-3" style="max-width: 90px;">
+                      {{ form_widget(form.endTime, {'attr': {'class': 'form-control datetimepicker','placeholder':'H:i','data-options':'{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true}'}}) }}                      
+                    </div>
+                  </div>
+                  <div class="form-error">
+                    {{ form_errors(form.endDate) }}
+                  </div>
+                </div>    
+              </div>              
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">User Type</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.userType)|length > 0 %} div-form-error{% endif %}">
+                  {{ form_widget(form.userType, {'attr': {'class': 'form-select form-select-sm mb-3'}}) }}
+                  <div class="form-error">
+                    {{ form_errors(form.userType) }}
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">User Category</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.userCategory)|length > 0 %} div-form-error{% endif %}">
+                  {{ form_widget(form.userCategory, {'attr': {'class': 'form-select form-select-sm mb-3'}}) }}
+                  <div class="form-error">
+                    {{ form_errors(form.userCategory) }}
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">Life of Code</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.lifeOfCode)|length > 0 %} div-form-error{% endif %}">
+                  {{ form_widget(form.lifeOfCode, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <div class="form-error">
+                    {{ form_errors(form.lifeOfCode) }}
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">Use per User</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.usePerUser)|length > 0 %} div-form-error{% endif %}">
+                  {{ form_widget(form.usePerUser, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <div class="form-error">
+                    {{ form_errors(form.usePerUser) }}
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">Terms & Conditions</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.termsCondition)|length > 0 %} div-form-error{% endif %}">
+                  {{ form_widget(form.termsCondition, {'attr': {'class': 'form-control mb-3'}}) }}
+                  <div class="form-error">
+                    {{ form_errors(form.termsCondition) }}
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">Status</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                  {{ form_widget(form.status, {'attr': {'class': 'form-select form-select-sm mb-3'}}) }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto">
+                  <label class="form-label" style="min-width:180px;" for="">Display on Portal</label>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                  <div class="form-check form-switch">
+                    {{ form_widget(form.displayOnPortal, {'attr': {'class': 'form-check-input'}}) }}
+                    <label class="form-check-label" for="dp_radio_7">Yes</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 my-2 text-end">
+                  <button type="submit" class="btn btn-primary">Add Promo Code</button>
+                </div>
+              </div>
+            {{ form_end(form) }}
+
+          </div>
+        </div>
+{% endblock %}

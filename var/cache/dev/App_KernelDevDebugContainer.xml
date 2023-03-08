@@ -217,11 +217,27 @@
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
     </service>
+    <service id="App\Controller\AddonsController" class="App\Controller\AddonsController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Repository\AddonsRepository"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CshazM0.App\Controller\AddonsController"/>
+      </call>
+    </service>
     <service id="App\Controller\LoginController" class="App\Controller\LoginController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.CshazM0.App\Controller\LoginController"/>
+      </call>
+    </service>
+    <service id="App\Controller\PromoCodesController" class="App\Controller\PromoCodesController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Repository\PromoCodesRepository"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CshazM0.App\Controller\PromoCodesController"/>
       </call>
     </service>
     <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
@@ -256,7 +272,14 @@
         <argument type="service" id=".service_locator.CshazM0.App\Controller\SuperadminController"/>
       </call>
     </service>
+    <service id="App\Dto\PromoCodesDto" class="App\Dto\PromoCodesDto" autowire="true" autoconfigure="true"/>
+    <service id="App\Form\AddonsFormType" class="App\Form\AddonsFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\PromoCodesFormType" class="App\Form\PromoCodesFormType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
@@ -267,6 +290,18 @@
     </service>
     <service id="App\Form\SubscriptionFormType" class="App\Form\SubscriptionFormType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
+    </service>
+    <service id="App\Repository\AddonsRepository" class="App\Repository\AddonsRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\AddonsTypeRepository" class="App\Repository\AddonsTypeRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\PromoCodesRepository" class="App\Repository\PromoCodesRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
@@ -287,6 +322,9 @@
     </service>
     <service id="App\Security\LoginAuthenticator" class="App\Security\LoginAuthenticator" autowire="true" autoconfigure="true">
       <argument type="service" id="router.default"/>
+    </service>
+    <service id="App\Twig\AppExtension" class="App\Twig\AppExtension" autowire="true" autoconfigure="true">
+      <tag name="twig.extension"/>
     </service>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
     <service id="response_listener" class="Symfony\Component\HttpKernel\EventListener\ResponseListener">
@@ -844,7 +882,9 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\AddonsFormType</argument>
         <argument>App\Form\ChangePasswordFormType</argument>
+        <argument>App\Form\PromoCodesFormType</argument>
         <argument>App\Form\RegistrationFormType</argument>
         <argument>App\Form\ResetPasswordRequestFormType</argument>
         <argument>App\Form\SubscriptionFormType</argument>
@@ -2001,7 +2041,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.O0AVHyE"/>
+      <argument type="service" id=".service_locator.kZKuhVw"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -2498,7 +2538,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.yVcTmcA"/>
+      <argument type="service" id=".service_locator.NwWftYv"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -3697,6 +3737,9 @@
         <argument type="service" id="twig.extension.form"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="App\Twig\AppExtension"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="doctrine.twig.doctrine_extension"/>
       </call>
       <call method="addExtension">
@@ -4087,9 +4130,15 @@
     <service id="pagerfanta.event_listener.convert_not_valid_current_page_to_not_found" class="BabDev\PagerfantaBundle\EventListener\ConvertNotValidMaxPerPageToNotFoundListener">
       <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" priority="512"/>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AddonsController" class="App\Controller\AddonsController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AddonsController" class="App\Controller\AddonsController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\AddonsController" class="App\Controller\AddonsController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PromoCodesController" class="App\Controller\PromoCodesController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PromoCodesController" class="App\Controller\PromoCodesController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\PromoCodesController" class="App\Controller\PromoCodesController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4102,20 +4151,32 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SuperadminController" class="App\Controller\SuperadminController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SuperadminController" class="App\Controller\SuperadminController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SuperadminController" class="App\Controller\SuperadminController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\AddonsFormType" class="App\Form\AddonsFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\AddonsFormType" class="App\Form\AddonsFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PromoCodesFormType" class="App\Form\PromoCodesFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\PromoCodesFormType" class="App\Form\PromoCodesFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\SubscriptionFormType" class="App\Form\SubscriptionFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\SubscriptionFormType" class="App\Form\SubscriptionFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AddonsRepository" class="App\Repository\AddonsRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\AddonsRepository" class="App\Repository\AddonsRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AddonsTypeRepository" class="App\Repository\AddonsTypeRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\AddonsTypeRepository" class="App\Repository\AddonsTypeRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PromoCodesRepository" class="App\Repository\PromoCodesRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\PromoCodesRepository" class="App\Repository\PromoCodesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\SubscriptionsRepository" class="App\Repository\SubscriptionsRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\SubscriptionsRepository" class="App\Repository\SubscriptionsRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Twig\Extension\ExtensionInterface.0.App\Twig\AppExtension" class="App\Twig\AppExtension" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Twig\AppExtension" class="App\Twig\AppExtension" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.7nzbL4K" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4453,6 +4514,12 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.y4_Zrx..Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
+    <service id=".service_locator.SoIa2O7" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="validator" type="service_closure" id="validator"/>
+      </argument>
+    </service>
     <service id=".service_locator.rSTd.nA" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4480,16 +4547,12 @@
         <argument key="passwordHasher" type="service_closure" id="security.user_password_hasher"/>
       </argument>
     </service>
-    <service id=".service_locator.SoIa2O7" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.nj68pmJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="validator" type="service_closure" id="validator"/>
-      </argument>
-    </service>
-    <service id=".service_locator.NTn695I" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
+        <argument key="App\Controller\AddonsController::create" type="service_closure" id=".service_locator.SoIa2O7"/>
         <argument key="App\Controller\LoginController::login" type="service_closure" id=".service_locator.rSTd.nA"/>
+        <argument key="App\Controller\PromoCodesController::create" type="service_closure" id=".service_locator.SoIa2O7"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.v.Ev_hT"/>
         <argument key="App\Controller\ResetPasswordController::request" type="service_closure" id=".service_locator.uVvF4gL"/>
         <argument key="App\Controller\ResetPasswordController::reset" type="service_closure" id=".service_locator.Mhqdd2r"/>
@@ -4498,7 +4561,9 @@
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
+        <argument key="App\Controller\AddonsController:create" type="service_closure" id=".service_locator.SoIa2O7"/>
         <argument key="App\Controller\LoginController:login" type="service_closure" id=".service_locator.rSTd.nA"/>
+        <argument key="App\Controller\PromoCodesController:create" type="service_closure" id=".service_locator.SoIa2O7"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.v.Ev_hT"/>
         <argument key="App\Controller\ResetPasswordController:request" type="service_closure" id=".service_locator.uVvF4gL"/>
         <argument key="App\Controller\ResetPasswordController:reset" type="service_closure" id=".service_locator.Mhqdd2r"/>
@@ -4582,10 +4647,12 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.O0AVHyE" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.kZKuhVw" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\AddonsFormType" type="service_closure" id="App\Form\AddonsFormType"/>
         <argument key="App\Form\ChangePasswordFormType" type="service_closure" id="App\Form\ChangePasswordFormType"/>
+        <argument key="App\Form\PromoCodesFormType" type="service_closure" id="App\Form\PromoCodesFormType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
         <argument key="App\Form\ResetPasswordRequestFormType" type="service_closure" id="App\Form\ResetPasswordRequestFormType"/>
         <argument key="App\Form\SubscriptionFormType" type="service_closure" id="App\Form\SubscriptionFormType"/>
@@ -4604,9 +4671,12 @@
         <argument key="doctrine.orm.listeners.doctrine_token_provider_schema_subscriber" type="service_closure" id="doctrine.orm.listeners.doctrine_token_provider_schema_subscriber"/>
       </argument>
     </service>
-    <service id=".service_locator.yVcTmcA" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.NwWftYv" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\AddonsRepository" type="service_closure" id="App\Repository\AddonsRepository"/>
+        <argument key="App\Repository\AddonsTypeRepository" type="service_closure" id="App\Repository\AddonsTypeRepository"/>
+        <argument key="App\Repository\PromoCodesRepository" type="service_closure" id="App\Repository\PromoCodesRepository"/>
         <argument key="App\Repository\ResetPasswordRequestRepository" type="service_closure" id="App\Repository\ResetPasswordRequestRepository"/>
         <argument key="App\Repository\SubscriptionsRepository" type="service_closure" id="App\Repository\SubscriptionsRepository"/>
         <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
@@ -4669,9 +4739,21 @@
         <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.CshazM0.App\Controller\AddonsController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\AddonsController"/>
+      <argument>App\Controller\AddonsController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CshazM0" method="withContext"/>
+    </service>
     <service id=".service_locator.CshazM0.App\Controller\LoginController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\LoginController"/>
       <argument>App\Controller\LoginController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CshazM0" method="withContext"/>
+    </service>
+    <service id=".service_locator.CshazM0.App\Controller\PromoCodesController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PromoCodesController"/>
+      <argument>App\Controller\PromoCodesController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.CshazM0" method="withContext"/>
     </service>
@@ -4841,12 +4923,12 @@
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver"/>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.NTn695I"/>
+      <argument type="service" id=".service_locator.nj68pmJ"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.NTn695I"/>
+      <argument type="service" id=".service_locator.nj68pmJ"/>
     </service>
     <service id=".doctrine.orm.default_metadata_driver.inner" class="Doctrine\Persistence\Mapping\Driver\MappingDriverChain">
       <call method="addDriver">
@@ -5556,15 +5638,15 @@
     <service id="Pagerfanta\View\ViewFactoryInterface" alias="pagerfanta.view_factory"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.7nzbL4K" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.NTn695I"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.nj68pmJ"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface" alias="logger"/>
     <service id=".service_locator.o.uf2zi" alias=".service_locator.7nzbL4K"/>
     <service id=".service_locator.TFYbZQh" alias=".service_locator.v.Ev_hT"/>
-    <service id=".service_locator.yWJZ7Y3" alias=".service_locator.NTn695I"/>
+    <service id=".service_locator.7_7Fu6q" alias=".service_locator.nj68pmJ"/>
     <service id=".service_locator.9XMoc9I" alias=".service_locator.kzegaci"/>
-    <service id=".service_locator.JyOR2YV" alias=".service_locator.O0AVHyE"/>
+    <service id=".service_locator.6Ucq6.1" alias=".service_locator.kZKuhVw"/>
     <service id=".service_locator.qBCHs1a" alias=".service_locator.QXcJQkF"/>
     <service id=".service_locator.VZoQk0z" alias=".service_locator.CshazM0"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher" public="true"/>
@@ -5587,11 +5669,11 @@
     <service id="argument_resolver.not_tagged_controller" alias="debug.argument_resolver.not_tagged_controller"/>
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.gFlme_s" alias=".service_locator.y4_Zrx."/>
+    <service id=".service_locator.dxLDz23" alias=".service_locator.SoIa2O7"/>
     <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>
     <service id=".service_locator.5UN.R0P" alias=".service_locator.v.Ev_hT"/>
     <service id=".service_locator.OJmnvRJ" alias=".service_locator.uVvF4gL"/>
     <service id=".service_locator.W47vLMj" alias=".service_locator.Mhqdd2r"/>
-    <service id=".service_locator.dxLDz23" alias=".service_locator.SoIa2O7"/>
     <service id=".service_locator.e4zRSya" alias=".service_locator.CshazM0"/>
     <service id=".service_locator.u6DWx23" alias=".service_locator.cXsfP3P"/>
     <service id=".service_locator.b9I9uGu" alias=".service_locator.WiCTJMq"/>
