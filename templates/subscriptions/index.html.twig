@@ -85,6 +85,7 @@
                 </div>
                 
                 {% if subscriptions|length > 0 %}
+                    {% set i = start_from %}
                     {% for subscription in subscriptions %}
                     
                     <div class="card card-body mt-2 shadow-none bg-100 border mb-3">
@@ -92,7 +93,7 @@
                             <div class="me-auto">
                             <div class="d-flex">
                                 <div class="flex-shrink-0">
-                                <span class="cli_no bg-primary text-white fw-bold">{{ subscription.id }}</span>
+                                <span class="cli_no bg-primary text-white fw-bold">{{ i }}</span>
                                 </div>
                                 <div class="flex-grow-1 ms-2">
                                 <h5 class="mb-0">{{ subscription.planTitle }}</h5>
@@ -233,6 +234,7 @@
                             </div>
                         </div>
                     </div>
+                    {% set i = i+1 %}
                     {% endfor %}        
                 {% else %}
                     <div class="card card-body mt-2 shadow-none bg-100 border mb-3">

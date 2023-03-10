@@ -40,12 +40,16 @@ class PromoCodesController extends AbstractController
             $order = $sortbyexpd[1];
         }
 
+        $page = intval($request->query->get('page', 1));
+        $limit = intval($request->query->get('limit', 5));
+        $start_from = ($limit * ($page-1))+1; 
+
         $queryBuilder = $this->promoCodesRepository->createPaginatedQueryBuilder($sortByFeild,$order,$searchBy);
         $adapter = new QueryAdapter($queryBuilder);
         $promocodes = Pagerfanta::createForCurrentPageWithMaxPerPage(
             $adapter,
-            intval($request->query->get('page', 1)),
-            intval($request->query->get('limit', 5))
+            $page,
+            $limit
         );
 
         return $this->render('promo_codes/index.html.twig', [
@@ -53,7 +57,8 @@ class PromoCodesController extends AbstractController
             'limit' => intval($request->query->get('limit', 5)),
             'sortby' => $sortByFeild,
             'order' => $order,
-            'searchBy' => $searchBy
+            'searchBy' => $searchBy,
+            'start_from' => $start_from
         ]);
     }
     #[Route('/promocodes/create', name: 'create_promocodes')]

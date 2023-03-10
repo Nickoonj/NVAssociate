@@ -39,12 +39,17 @@ class AddonsController extends AbstractController
             $sortByFeild = $sortbyexpd[0];
             $order = $sortbyexpd[1];
         }
+
+        $page = intval($request->query->get('page', 1));
+        $limit = intval($request->query->get('limit', 5));
+        $start_from = ($limit * ($page-1))+1; 
+
         $queryBuilder = $this->addonsRepository->createPaginatedQueryBuilder($sortByFeild,$order,$searchBy,$filterBy);
         $adapter = new QueryAdapter($queryBuilder);
         $addons = Pagerfanta::createForCurrentPageWithMaxPerPage(
             $adapter,
-            intval($request->query->get('page', 1)),
-            intval($request->query->get('limit', 5))
+            $page,
+            $limit
         );
         
         return $this->render('addons/index.html.twig', [
@@ -53,7 +58,8 @@ class AddonsController extends AbstractController
             'sortby' => $sortByFeild,
             'order' => $order,
             'searchBy' => $searchBy,
-            'filterBy' => $filterBy
+            'filterBy' => $filterBy,
+            'start_from' => $start_from
         ]);
     }
     #[Route('/addons/create', name: 'create_addons')]

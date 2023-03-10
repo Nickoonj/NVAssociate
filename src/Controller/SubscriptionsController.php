@@ -38,20 +38,26 @@ class SubscriptionsController extends AbstractController
             $sortByFeild = $sortbyexpd[0];
             $order = $sortbyexpd[1];
         }
+
+        $page = intval($request->query->get('page', 1));
+        $limit = intval($request->query->get('limit', 5));
+        $start_from = ($limit * ($page-1))+1;    
+
         $queryBuilder = $this->subscriptionsRepository->createPaginatedQueryBuilder($sortByFeild,$order,$searchBy);
         $adapter = new QueryAdapter($queryBuilder);
         $subscriptions = Pagerfanta::createForCurrentPageWithMaxPerPage(
             $adapter,
-            intval($request->query->get('page', 1)),
-            intval($request->query->get('limit', 5))
+            $page,
+            $limit
         );
-                
+           
         return $this->render('subscriptions/index.html.twig', [
             'subscriptions' => $subscriptions,
             'limit' => intval($request->query->get('limit', 5)),
             'sortby' => $sortByFeild,
             'order' => $order,
-            'searchBy' => $searchBy
+            'searchBy' => $searchBy,
+            'start_from' => $start_from
         ]);
     }
     #[Route('/subscriptions/create', name: 'create_subscriptions')]
