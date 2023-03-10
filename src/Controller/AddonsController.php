@@ -60,7 +60,7 @@ class AddonsController extends AbstractController
     public function create(Request $request, ValidatorInterface $validator): Response
     {
         $addons  = new Addons();
-        $form = $this->createForm(AddonsFormType::class,$addons);
+        $form = $this->createForm(AddonsFormType::class,$addons, ['attr' => ['class' => 'needs-validation','novalidate'=>'']]);
         
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {              
@@ -126,7 +126,7 @@ class AddonsController extends AbstractController
     {
          $addon = $this->addonsRepository->find($id);
 
-         $form = $this->createForm(AddonsFormType::class, $addon);
+         $form = $this->createForm(AddonsFormType::class, $addon, ['attr' => ['class' => 'needs-validation','novalidate'=>'']]);
          $form->handleRequest($request);
          if ($form->isSubmitted() && $form->isValid()) {
             

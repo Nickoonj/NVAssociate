@@ -4,8 +4,11 @@ namespace App\Entity;
 
 use App\Entity\AddonsType;
 use App\Repository\AddonsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AddonsRepository::class)]
 class Addons
@@ -16,24 +19,31 @@ class Addons
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'addons')]
+    #[Assert\NotBlank]
     private ?AddonsType $addOnType = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $addOnTitle = null;
 
     #[ORM\Column(length: 2500, nullable: true)]
+    #[Assert\NotBlank]
     private ?string $addOnTypeJson = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\NotBlank]
     private ?int $time = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank]
     private ?string $monthDay = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $Price = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
+    #[Assert\NotBlank]
     private ?int $status = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -42,9 +52,13 @@ class Addons
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
 
+    #[ORM\OneToMany(mappedBy: 'addonsId', targetEntity: CaSubscriptionAddons::class)]
+    private Collection $caSubscriptionAddons;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->caSubscriptionAddons = new ArrayCollection();
     }
     
     public function getId(): ?int
@@ -156,6 +170,36 @@ class Addons
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CaSubscriptionAddons>
+     */
+    public function getCaSubscriptionAddons(): Collection
+    {
+        return $this->caSubscriptionAddons;
+    }
+
+    public function addCaSubscriptionAddon(CaSubscriptionAddons $caSubscriptionAddon): self
+    {
+        if (!$this->caSubscriptionAddons->contains($caSubscriptionAddon)) {
+            $this->caSubscriptionAddons->add($caSubscriptionAddon);
+            $caSubscriptionAddon->setAddonsId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCaSubscriptionAddon(CaSubscriptionAddons $caSubscriptionAddon): self
+    {
+        if ($this->caSubscriptionAddons->removeElement($caSubscriptionAddon)) {
+            // set the owning side to null (unless already changed)
+            if ($caSubscriptionAddon->getAddonsId() === $this) {
+                $caSubscriptionAddon->setAddonsId(null);
+            }
+        }
 
         return $this;
     }

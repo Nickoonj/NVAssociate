@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SubscriptionsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -20,14 +22,14 @@ class Subscriptions
 
     #[ORM\Column]
     #[Assert\NotBlank]
-    private ?int $time = null;
+    private ?int $time = 0;
 
     #[ORM\Column(length: 255)]
     private ?string $monthDay = null;
 
     #[ORM\Column]
     #[Assert\NotBlank]
-    private ?int $noOfClients = null;
+    private ?int $noOfClients = 0;
 
     #[ORM\Column]
     #[Assert\NotBlank]
@@ -35,19 +37,19 @@ class Subscriptions
 
     #[ORM\Column]
     #[Assert\NotBlank]
-    private ?int $noOfEmployee = null;
+    private ?int $noOfEmployee = 0;
 
     #[ORM\Column]
     #[Assert\NotBlank]
-    private ?int $noOfTransaction = null;
+    private ?int $noOfTransaction = 0;
 
     #[ORM\Column]
     #[Assert\NotBlank]
-    private ?int $storageSize = null;
+    private ?int $storageSize = 0;
 
     #[ORM\Column]
     #[Assert\NotBlank]
-    private ?int $price = null;
+    private ?int $price = 0;
 
     #[ORM\Column(length: 255)]
     private ?string $displayOnPortal = null;
@@ -91,9 +93,13 @@ class Subscriptions
     #[ORM\Column]
     private ?int $ClientVendorLogin = 0;
 
+    #[ORM\OneToMany(mappedBy: 'subscriptionId', targetEntity: CaSubscription::class)]
+    private Collection $caSubscriptions;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->caSubscriptions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -373,6 +379,36 @@ class Subscriptions
     public function setClientVendorLogin(int $ClientVendorLogin): self
     {
         $this->ClientVendorLogin = $ClientVendorLogin;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CaSubscription>
+     */
+    public function getCaSubscriptions(): Collection
+    {
+        return $this->caSubscriptions;
+    }
+
+    public function addCaSubscription(CaSubscription $caSubscription): self
+    {
+        if (!$this->caSubscriptions->contains($caSubscription)) {
+            $this->caSubscriptions->add($caSubscription);
+            $caSubscription->setSubscriptionId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCaSubscription(CaSubscription $caSubscription): self
+    {
+        if ($this->caSubscriptions->removeElement($caSubscription)) {
+            // set the owning side to null (unless already changed)
+            if ($caSubscription->getSubscriptionId() === $this) {
+                $caSubscription->setSubscriptionId(null);
+            }
+        }
 
         return $this;
     }

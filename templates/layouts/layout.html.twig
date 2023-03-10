@@ -30,6 +30,7 @@
     <link href="{{asset('assets/css/user-rtl.min.css')}}" rel="stylesheet" id="user-style-rtl">
     <link href="{{asset('assets/css/user.min.css')}}" rel="stylesheet" id="user-style-default">
     <link href="{{asset('assets/css/datatables.min.css')}}" rel="stylesheet" id="user-style-default">
+    <link href="{{asset('assets/css/bootstrap-icons.css')}}" rel="stylesheet" id="user-style-default">
 
     <link rel="stylesheet" href="{{asset('vendors/boostrap-select/bootstrap-select.min.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/jquery-ui/jquery-ui.css')}}">
@@ -138,8 +139,13 @@
   <script src="{{asset('vendors/boostrap-select/bootstrap-select.min.js')}}"></script>
   <script src="{{asset('vendors/jquery-ui/jquery-ui.min.js')}}"></script>
   <script src="{{asset('assets/js/tippy-bundle.umd.js')}}"></script>
-  <!-- end -->
+
+  <script src="{{asset('assets/js/theme.js')}}"></script>
+
+  <!-- custom script -->
+ 
     <script src="{{asset('assets/js/app.js')}}"></script>
     {% block pagescript %}<script></script>{% endblock %}
+   <!-- end -->
   </body>
 {% endblock %}

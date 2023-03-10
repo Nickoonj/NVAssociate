@@ -60,7 +60,7 @@ class PromoCodesController extends AbstractController
     public function create(Request $request, ValidatorInterface $validator): Response
     {
         $promoCodesDto  = new PromoCodesDto();
-        $form = $this->createForm(PromoCodesFormType::class,$promoCodesDto);
+        $form = $this->createForm(PromoCodesFormType::class,$promoCodesDto, ['attr' => ['class' => 'needs-validation','novalidate'=>'']]);
                 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {  
@@ -159,7 +159,7 @@ class PromoCodesController extends AbstractController
         $promoCodesDto->setDisplayOnPortal(filter_var($displayOnPortal, FILTER_VALIDATE_BOOLEAN));
         $promoCodesDto->setStatus($status);
 
-         $form = $this->createForm(PromoCodesFormType::class, $promoCodesDto);
+         $form = $this->createForm(PromoCodesFormType::class, $promoCodesDto, ['attr' => ['class' => 'needs-validation','novalidate'=>'']]);
          $form->handleRequest($request);
          if ($form->isSubmitted() && $form->isValid()) {  
             
@@ -218,4 +218,5 @@ class PromoCodesController extends AbstractController
         $this->addFlash('success', 'Promo Code Deleted!');
         return $this->redirectToRoute('app_promo_codes');
     }
+    
 }

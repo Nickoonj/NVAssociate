@@ -8,6 +8,8 @@ return [
     'create_addons' => [[], ['_controller' => 'App\\Controller\\AddonsController::create'], [], [['text', '/addons/create']], [], [], []],
     'edit_addons' => [['id'], ['_controller' => 'App\\Controller\\AddonsController::update'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/addons/edit']], [], [], []],
     'delete_addons' => [['id'], ['_controller' => 'App\\Controller\\AddonsController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/addons/delete']], [], [], []],
+    'app_clients' => [[], ['_controller' => 'App\\Controller\\ClientsController::index'], [], [['text', '/clients']], [], [], []],
+    'create_clients' => [[], ['_controller' => 'App\\Controller\\ClientsController::create'], [], [['text', '/clients/create']], [], [], []],
     'app_login' => [[], ['_controller' => 'App\\Controller\\LoginController::login'], [], [['text', '/']], [], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\LoginController::logout'], [], [['text', '/logout']], [], [], []],
     'app_promo_codes' => [[], ['_controller' => 'App\\Controller\\PromoCodesController::index'], [], [['text', '/promocodes']], [], [], []],

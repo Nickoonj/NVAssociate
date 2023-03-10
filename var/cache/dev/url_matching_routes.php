@@ -10,6 +10,8 @@ return [
     [ // $staticRoutes
         '/addons' => [[['_route' => 'app_addons', '_controller' => 'App\\Controller\\AddonsController::index'], null, null, null, false, false, null]],
         '/addons/create' => [[['_route' => 'create_addons', '_controller' => 'App\\Controller\\AddonsController::create'], null, null, null, false, false, null]],
+        '/clients' => [[['_route' => 'app_clients', '_controller' => 'App\\Controller\\ClientsController::index'], null, null, null, false, false, null]],
+        '/clients/create' => [[['_route' => 'create_clients', '_controller' => 'App\\Controller\\ClientsController::create'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\LoginController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\LoginController::logout'], null, null, null, false, false, null]],
         '/promocodes' => [[['_route' => 'app_promo_codes', '_controller' => 'App\\Controller\\PromoCodesController::index'], null, null, null, false, false, null]],

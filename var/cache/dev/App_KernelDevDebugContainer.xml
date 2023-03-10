@@ -225,6 +225,14 @@
         <argument type="service" id=".service_locator.CshazM0.App\Controller\AddonsController"/>
       </call>
     </service>
+    <service id="App\Controller\ClientsController" class="App\Controller\ClientsController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Repository\ClientTypeRepository"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CshazM0.App\Controller\ClientsController"/>
+      </call>
+    </service>
     <service id="App\Controller\LoginController" class="App\Controller\LoginController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -272,11 +280,15 @@
         <argument type="service" id=".service_locator.CshazM0.App\Controller\SuperadminController"/>
       </call>
     </service>
+    <service id="App\Dto\ClientDto" class="App\Dto\ClientDto" autowire="true" autoconfigure="true"/>
     <service id="App\Dto\PromoCodesDto" class="App\Dto\PromoCodesDto" autowire="true" autoconfigure="true"/>
     <service id="App\Form\AddonsFormType" class="App\Form\AddonsFormType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\ClientsFormType" class="App\Form\ClientsFormType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\PromoCodesFormType" class="App\Form\PromoCodesFormType" autowire="true" autoconfigure="true">
@@ -299,11 +311,43 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
+    <service id="App\Repository\CaFirmDetailsRepository" class="App\Repository\CaFirmDetailsRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CaOwnerDetailsRepository" class="App\Repository\CaOwnerDetailsRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CaSubscriptionAddonsRepository" class="App\Repository\CaSubscriptionAddonsRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CaSubscriptionRepository" class="App\Repository\CaSubscriptionRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CitiesRepository" class="App\Repository\CitiesRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\ClientTypeRepository" class="App\Repository\ClientTypeRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CountriesRepository" class="App\Repository\CountriesRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\PromoCodesRepository" class="App\Repository\PromoCodesRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\StatesRepository" class="App\Repository\StatesRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -884,6 +928,7 @@
       <argument type="collection">
         <argument>App\Form\AddonsFormType</argument>
         <argument>App\Form\ChangePasswordFormType</argument>
+        <argument>App\Form\ClientsFormType</argument>
         <argument>App\Form\PromoCodesFormType</argument>
         <argument>App\Form\RegistrationFormType</argument>
         <argument>App\Form\ResetPasswordRequestFormType</argument>
@@ -2041,7 +2086,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.kZKuhVw"/>
+      <argument type="service" id=".service_locator.v0WjEfi"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -2538,7 +2583,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.NwWftYv"/>
+      <argument type="service" id=".service_locator.thFEZPN"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4133,6 +4178,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AddonsController" class="App\Controller\AddonsController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AddonsController" class="App\Controller\AddonsController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AddonsController" class="App\Controller\AddonsController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ClientsController" class="App\Controller\ClientsController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ClientsController" class="App\Controller\ClientsController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ClientsController" class="App\Controller\ClientsController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4155,6 +4203,8 @@
     <service id=".abstract.instanceof.App\Form\AddonsFormType" class="App\Form\AddonsFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ClientsFormType" class="App\Form\ClientsFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ClientsFormType" class="App\Form\ClientsFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PromoCodesFormType" class="App\Form\PromoCodesFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\PromoCodesFormType" class="App\Form\PromoCodesFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
@@ -4167,10 +4217,26 @@
     <service id=".abstract.instanceof.App\Repository\AddonsRepository" class="App\Repository\AddonsRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AddonsTypeRepository" class="App\Repository\AddonsTypeRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\AddonsTypeRepository" class="App\Repository\AddonsTypeRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CaFirmDetailsRepository" class="App\Repository\CaFirmDetailsRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CaFirmDetailsRepository" class="App\Repository\CaFirmDetailsRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CaOwnerDetailsRepository" class="App\Repository\CaOwnerDetailsRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CaOwnerDetailsRepository" class="App\Repository\CaOwnerDetailsRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CaSubscriptionAddonsRepository" class="App\Repository\CaSubscriptionAddonsRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CaSubscriptionAddonsRepository" class="App\Repository\CaSubscriptionAddonsRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CaSubscriptionRepository" class="App\Repository\CaSubscriptionRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CaSubscriptionRepository" class="App\Repository\CaSubscriptionRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CitiesRepository" class="App\Repository\CitiesRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CitiesRepository" class="App\Repository\CitiesRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ClientTypeRepository" class="App\Repository\ClientTypeRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ClientTypeRepository" class="App\Repository\ClientTypeRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CountriesRepository" class="App\Repository\CountriesRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CountriesRepository" class="App\Repository\CountriesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PromoCodesRepository" class="App\Repository\PromoCodesRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\PromoCodesRepository" class="App\Repository\PromoCodesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\StatesRepository" class="App\Repository\StatesRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\StatesRepository" class="App\Repository\StatesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\SubscriptionsRepository" class="App\Repository\SubscriptionsRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\SubscriptionsRepository" class="App\Repository\SubscriptionsRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
@@ -4547,10 +4613,11 @@
         <argument key="passwordHasher" type="service_closure" id="security.user_password_hasher"/>
       </argument>
     </service>
-    <service id=".service_locator.nj68pmJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.F5nZHBQ" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AddonsController::create" type="service_closure" id=".service_locator.SoIa2O7"/>
+        <argument key="App\Controller\ClientsController::create" type="service_closure" id=".service_locator.SoIa2O7"/>
         <argument key="App\Controller\LoginController::login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\PromoCodesController::create" type="service_closure" id=".service_locator.SoIa2O7"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.v.Ev_hT"/>
@@ -4562,6 +4629,7 @@
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="App\Controller\AddonsController:create" type="service_closure" id=".service_locator.SoIa2O7"/>
+        <argument key="App\Controller\ClientsController:create" type="service_closure" id=".service_locator.SoIa2O7"/>
         <argument key="App\Controller\LoginController:login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\PromoCodesController:create" type="service_closure" id=".service_locator.SoIa2O7"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.v.Ev_hT"/>
@@ -4647,11 +4715,12 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.kZKuhVw" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.v0WjEfi" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\AddonsFormType" type="service_closure" id="App\Form\AddonsFormType"/>
         <argument key="App\Form\ChangePasswordFormType" type="service_closure" id="App\Form\ChangePasswordFormType"/>
+        <argument key="App\Form\ClientsFormType" type="service_closure" id="App\Form\ClientsFormType"/>
         <argument key="App\Form\PromoCodesFormType" type="service_closure" id="App\Form\PromoCodesFormType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
         <argument key="App\Form\ResetPasswordRequestFormType" type="service_closure" id="App\Form\ResetPasswordRequestFormType"/>
@@ -4671,13 +4740,21 @@
         <argument key="doctrine.orm.listeners.doctrine_token_provider_schema_subscriber" type="service_closure" id="doctrine.orm.listeners.doctrine_token_provider_schema_subscriber"/>
       </argument>
     </service>
-    <service id=".service_locator.NwWftYv" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.thFEZPN" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AddonsRepository" type="service_closure" id="App\Repository\AddonsRepository"/>
         <argument key="App\Repository\AddonsTypeRepository" type="service_closure" id="App\Repository\AddonsTypeRepository"/>
+        <argument key="App\Repository\CaFirmDetailsRepository" type="service_closure" id="App\Repository\CaFirmDetailsRepository"/>
+        <argument key="App\Repository\CaOwnerDetailsRepository" type="service_closure" id="App\Repository\CaOwnerDetailsRepository"/>
+        <argument key="App\Repository\CaSubscriptionAddonsRepository" type="service_closure" id="App\Repository\CaSubscriptionAddonsRepository"/>
+        <argument key="App\Repository\CaSubscriptionRepository" type="service_closure" id="App\Repository\CaSubscriptionRepository"/>
+        <argument key="App\Repository\CitiesRepository" type="service_closure" id="App\Repository\CitiesRepository"/>
+        <argument key="App\Repository\ClientTypeRepository" type="service_closure" id="App\Repository\ClientTypeRepository"/>
+        <argument key="App\Repository\CountriesRepository" type="service_closure" id="App\Repository\CountriesRepository"/>
         <argument key="App\Repository\PromoCodesRepository" type="service_closure" id="App\Repository\PromoCodesRepository"/>
         <argument key="App\Repository\ResetPasswordRequestRepository" type="service_closure" id="App\Repository\ResetPasswordRequestRepository"/>
+        <argument key="App\Repository\StatesRepository" type="service_closure" id="App\Repository\StatesRepository"/>
         <argument key="App\Repository\SubscriptionsRepository" type="service_closure" id="App\Repository\SubscriptionsRepository"/>
         <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
@@ -4742,6 +4819,12 @@
     <service id=".service_locator.CshazM0.App\Controller\AddonsController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\AddonsController"/>
       <argument>App\Controller\AddonsController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CshazM0" method="withContext"/>
+    </service>
+    <service id=".service_locator.CshazM0.App\Controller\ClientsController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ClientsController"/>
+      <argument>App\Controller\ClientsController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.CshazM0" method="withContext"/>
     </service>
@@ -4923,12 +5006,12 @@
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver"/>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.nj68pmJ"/>
+      <argument type="service" id=".service_locator.F5nZHBQ"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.nj68pmJ"/>
+      <argument type="service" id=".service_locator.F5nZHBQ"/>
     </service>
     <service id=".doctrine.orm.default_metadata_driver.inner" class="Doctrine\Persistence\Mapping\Driver\MappingDriverChain">
       <call method="addDriver">
@@ -5638,15 +5721,15 @@
     <service id="Pagerfanta\View\ViewFactoryInterface" alias="pagerfanta.view_factory"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.7nzbL4K" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.nj68pmJ"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.F5nZHBQ"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface" alias="logger"/>
     <service id=".service_locator.o.uf2zi" alias=".service_locator.7nzbL4K"/>
     <service id=".service_locator.TFYbZQh" alias=".service_locator.v.Ev_hT"/>
-    <service id=".service_locator.7_7Fu6q" alias=".service_locator.nj68pmJ"/>
+    <service id=".service_locator.jdY3u8J" alias=".service_locator.F5nZHBQ"/>
     <service id=".service_locator.9XMoc9I" alias=".service_locator.kzegaci"/>
-    <service id=".service_locator.6Ucq6.1" alias=".service_locator.kZKuhVw"/>
+    <service id=".service_locator.uVNFEbS" alias=".service_locator.v0WjEfi"/>
     <service id=".service_locator.qBCHs1a" alias=".service_locator.QXcJQkF"/>
     <service id=".service_locator.VZoQk0z" alias=".service_locator.CshazM0"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher" public="true"/>

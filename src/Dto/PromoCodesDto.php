@@ -1,25 +1,42 @@
 <?php
 namespace App\Dto;
+use Symfony\Component\Validator\Constraints as Assert;
 
 Class PromoCodesDto
 {
-
+    #[Assert\NotBlank]
     private ?string $promoName = null;
+    #[Assert\NotBlank]
     private ?string $promoDescription = null;
+    #[Assert\NotBlank]
     private ?string $promoType = null;
+    #[Assert\NotBlank]
     private ?int $discountAmount = null;
+    #[Assert\NotBlank]
     private ?int $maximumDiscountAmount = null;
+    #[Assert\NotBlank]
     private ?int $maximumOrderValue = null;
+    #[Assert\NotBlank]
     private ?string $startDate = null;
+    #[Assert\NotBlank]
     private ?string $endDate = null;
+    #[Assert\NotBlank]
     private ?string $startTime = null;
+    #[Assert\NotBlank]
     private ?string $endTime = null;
+    #[Assert\NotBlank]
     private ?string $userType = null;
+    #[Assert\NotBlank]
     private ?int $userCategory = null;
+    #[Assert\NotBlank]
     private ?int $lifeOfCode = null;
+    #[Assert\NotBlank]
     private ?int $usePerUser = null;
+    #[Assert\NotBlank]
     private ?string $termsCondition = null;
+    #[Assert\NotBlank]
     private ?string $displayOnPortal = null;
+    #[Assert\NotBlank]
     private ?int $status = null;
     
 

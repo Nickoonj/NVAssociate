@@ -1,0 +1,836 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% block title %}Dashboard | Superadmin!{% endblock %}
+
+{% block content %}
+  <!-- start: basic forms -->
+        <div class="card mb-3">
+          <div class="card-header position-relative d-flex" style="min-height:90px;">
+            <div class="d-flex align-items-center w-100">
+              <div class="me-auto">
+                <h5 class="my-2 text-white position-relative z-index-1">Add Client</h5>
+              </div>
+
+            </div>
+            <div class="bg-holder rounded-3 rounded-bottom-0" style="background-image:url(/assets/img/generic/4.jpg);"></div>
+          </div>
+          <div class="card-body bg-light">
+            <div class="position-relative">
+              <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active ps-0" data-bs-toggle="tab" href="#tab_firmInfo" role="tab">Firm Info</a>
+                </li>
+                <li class="nav-item">
+                  <a type="button" class="nav-link px-2 px-md-3" data-bs-toggle="tab" href="#tab_ownerInfo" role="tab">Owner Info</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link px-2 px-md-3" data-bs-toggle="tab" href="#tab_subscription" role="tab">Subscription</a>
+                </li>
+                <li class="nav-item">
+                  <a type="button" class="nav-link px-2 px-md-3" data-bs-toggle="tab" href="#tab_payment" role="tab">Payment</a>
+                </li>
+              </ul>
+              <div class="tab_cancel_btn">
+                <button type="button" class="btn btn-danger ms-2"><i class="bi bi-x-lg"></i> Cancel</button>
+              </div>
+
+            </div>
+            
+            <div class="tab-content" id="myTabContent">
+              
+              <div class="tab-pane fade show active" id="tab_firmInfo" role="tabpanel">
+
+                {{ form_start(form) }}
+                  <div class="row mt-3">
+                    <div class="col-12 col-md-9 col-lg-9">
+                      <div class="row">
+                        <div class="col-12 col-md-8 col-lg-8">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Client Type<sup class="text-danger fs--1">*</sup>
+                            </label>
+                            {{ form_widget(form.clientType, {'attr': {'class': 'form-select js-choice','size':'1', 'name':'', 'data-options':'{"removeItemButton":true,"placeholder":true}'}}) }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Firm Name<sup class="text-danger fs--1">*</sup>
+                            </label>
+                            {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Firm Type
+                            </label>
+                            {{ form_widget(form.clientType, {'attr': {'class': 'form-select js-choice','size':'1', 'name':'', 'data-options':'{"removeItemButton":true,"placeholder":true}'}}) }}
+                            <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                              <option value="">- Select type -</option>
+                              <option value="Propritor">Propritor</option>
+                              <option value="Partnership">Partnership</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Firm Pan<sup class="text-danger fs--1">*</sup>
+                            </label>
+                            <input class="form-control" id="" type="text" placeholder="">
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Firm GST<sup class="text-danger fs--1">*</sup>
+                            </label>
+                            <input class="form-control" id="" type="text" placeholder="">
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Firm Registration No
+                            </label>
+                            <input class="form-control" id="" type="text" placeholder="">
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Client ID<sup class="text-danger fs--1">*</sup>
+                            </label>
+                            <input class="form-control" id="" type="text" placeholder="">
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-3 col-lg-3 text-center">
+                      <div class="avatar avatar-5xl avatar-profile shadow-sm img-thumbnail rounded-circle position-relative" style="transform:inherit;">
+                        <div class="h-100 w-100 rounded-circle overflow-hidden position-relative"> <img src="{{asset('assets/img/company_logo_default.png')}}" width="200" alt="" data-dz-thumbnail="data-dz-thumbnail" /><input class="d-none" id="profile-image" type="file" /><label class="mb-0 overlay-icon d-flex flex-center" for="profile-image"><span
+                              class="bg-holder overlay overlay-0"></span><span
+                              class="z-index-1 text-white dark__text-white text-center fs--1"><span
+                                class="fas fa-camera"></span><span class="d-block">Update</span></span></label></div>
+                      </div>
+                      <label class="form-label mt-2 d-block">Upload Logo</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-md-4 col-lg-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="">
+                          Email<sup class="text-danger fs--1">*</sup>
+                        </label>
+                        <input class="form-control" id="" type="email" placeholder="">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="">
+                          Mobile<sup class="text-danger fs--1">*</sup>
+                        </label>
+                        <input class="form-control" id="" type="text" placeholder="">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-8 col-lg-8">
+                      <div class="mb-3">
+                        <label class="form-label" for="">
+                          Address<sup class="text-danger fs--1">*</sup>
+                        </label>
+                        <textarea class="form-control" name="" id="" rows="2"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="">
+                          Pin Code<sup class="text-danger fs--1">*</sup>
+                        </label>
+                        <input class="form-control" id="" type="text" placeholder="">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="">
+                          City
+                        </label>
+                        <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                          <option value="">-- Select type --</option>
+                          <option value="Bulqize">Bulqize</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="">
+                          State
+                        </label>
+                        <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                          <option value="">-- Select type --</option>
+                          <option value="Berat">Berat</option>
+                          <option value="Bulqize">Bulqize</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="">
+                          Country
+                        </label>
+                        <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                          <option value="">- Select type -</option>
+                          <option value="Afghanistan">Afghanistan</option>
+                          <option value="Albania">Albania</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="">
+                          Group
+                        </label>
+                        <input class="form-control" id="" type="text" placeholder="">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="">
+                          Reffered By
+                        </label>
+                        <input class="form-control" id="" type="text" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 my-2 text-end">
+                      <button type="button" class="btn btn-primary btnNext ms-2" style="min-width:104px;">Next</button>
+                    </div>
+                  </div>
+                {{ form_end(form) }}
+
+              </div>
+
+              <div class="tab-pane fade" id="tab_ownerInfo" role="tabpanel">
+                <form action="">
+                  <div class="row mt-3">
+                    <div class="col-12 col-md-9 col-lg-9">
+                      <div class="row">
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              First Name<sup class="text-danger fs--1">*</sup>
+                            </label>
+                            <input class="form-control" id="" type="text" placeholder="">
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Middle Name
+                            </label>
+                            <input class="form-control" id="" type="text" placeholder="">
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Last Name<sup class="text-danger fs--1">*</sup>
+                            </label>
+                            <input class="form-control" id="" type="text" placeholder="">
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Gender
+                            </label>
+                            <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                              <option value="">- Select type -</option>
+                              <option value="Female">Female</option>
+                              <option value="Male">Male</option>
+                              <option value="Other">Other</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Date of Birth
+                            </label>
+                            <div class="input-group">
+                              <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                              <input class="form-control datetimepicker" type="text" placeholder="d/m/y" data-options='{"disableMobile":true}' />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Membership No<sup class="text-danger fs--1">*</sup>
+                            </label>
+                            <input class="form-control" id="" type="text" placeholder="">
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Email Id<sup class="text-danger fs--1">*</sup>
+                            </label>
+                            <input class="form-control" id="" type="text" placeholder="">
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Mobile<sup class="text-danger fs--1">*</sup>
+                            </label>
+                            <input class="form-control" id="" type="text" placeholder="">
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                          <div class="mb-3">
+                            <label class="form-label" for="">
+                              Alternate Mobile
+                            </label>
+                            <input class="form-control" id="" type="text" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-3 col-lg-3 text-center">
+                      <div class="avatar avatar-5xl avatar-profile shadow-sm img-thumbnail rounded-circle position-relative" style="transform:inherit;">
+                        <div class="h-100 w-100 rounded-circle overflow-hidden position-relative"> <img src="assets/img/company_logo_default.png" width="200" alt="" data-dz-thumbnail="data-dz-thumbnail" /><input class="d-none" id="profile-image" type="file" /><label class="mb-0 overlay-icon d-flex flex-center" for="profile-image"><span
+                              class="bg-holder overlay overlay-0"></span><span
+                              class="z-index-1 text-white dark__text-white text-center fs--1"><span
+                                class="fas fa-camera"></span><span class="d-block">Update</span></span></label></div>
+                      </div>
+                      <label class="form-label mt-2 d-block">Upload Logo</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 my-2">
+                      <div class="d-flex">
+                        <div class="me-auto">
+                          <button type="button" class="btn btn-primary"><i class="fa fa-plus" style="font-size:14px;"></i> Add</button>
+                        </div>
+                        <div class="ms-auto">
+                          <button type="button" class="btn btn-secondary btnPrev" style="min-width:104px;">Previous</button>
+                          <button type="button" class="btn btn-primary btnNext ms-2" style="min-width:104px;">Next</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane fade" id="tab_subscription" role="tabpanel">
+                <form action="">
+                  <div class="my-3">
+
+                    <div class="row">
+                      <div class="col-12 col-sm-8 col-md-8">
+                        <div class="row g-3">
+                          <div class="col">
+                            <div class="mb-2">
+                              <label class="form-label mb-1" for="">
+                                Subscription Plan<sup class="text-danger fs--1">*</sup>
+                              </label>
+                              <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                                <option value="">- Select type -</option>
+                                <option value="Silver">Silver</option>
+                                <option value="Gold">Gold</option>
+                                <option value="Platinum">Platinum</option>
+                                <option value="Diamond">Diamond</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-auto align-self-center">
+                            <div class="addCa_qtyinp">
+                            </div>
+                          </div>
+                          <div class="col-auto align-self-end">
+                            <p class="text-end mb-2">Rs. 5000/-</p>
+                          </div>
+                        </div>
+
+                        <div class="row g-3">
+                          <div class="col">
+                            <div class="mb-2">
+                              <label class="form-label mb-1" for="">
+                                Addon Plans
+                              </label>
+                              <div class="row g-3">
+                                <div class="col-6">
+                                  <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                                    <option value="">- Select type -</option>
+                                    <option value="addon 1">addon 1</option>
+                                    <option value="addon 2">addon 2</option>
+                                    <option value="addon 3">addon 3</option>
+                                  </select>
+                                </div>
+                                <div class="col-6">
+                                  <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                                    <option value="">- Select type -</option>
+                                    <option value="addon 1">addon 1</option>
+                                    <option value="addon 2">addon 2</option>
+                                    <option value="addon 3">addon 3</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-auto align-self-center">
+                            <div class="addCa_qtyinp">
+                              <div class="row g-0">
+                                <div class="col">
+                                  <label class="mb-2" style="font-size:12px;">Qty</label>
+                                  <div class="input-group input-group-sm">
+                                    <button type="button" class="input-group-text"><i class="bi bi-dash-lg"></i></button>
+                                    <input type="text" class="form-control text-center" value="1">
+                                    <button type="button" class="input-group-text"><i class="bi bi-plus-lg"></i></button>
+                                  </div>
+                                </div>
+                                <div class="col-auto align-self-end">
+                                  <button type="button" class="btn btn-danger" style="width: 30px; height: 30px; padding: 5px; font-size: 14px;"><i class="bi bi-trash3-fill"></i></button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-auto align-self-end">
+                            <p class="text-end mb-2">Rs. 500/-</p>
+                          </div>
+                        </div>
+
+                        <div class="row g-3">
+                          <div class="col">
+                            <div class="mb-2">
+                              <label class="form-label mb-1" for="">
+                                Addon Plans
+                              </label>
+                              <div class="row g-3">
+                                <div class="col-6">
+                                  <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                                    <option value="">- Select type -</option>
+                                    <option value="addon 1">addon 1</option>
+                                    <option value="addon 2">addon 2</option>
+                                    <option value="addon 3">addon 3</option>
+                                  </select>
+                                </div>
+                                <div class="col-6">
+                                  <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                                    <option value="">- Select type -</option>
+                                    <option value="addon 1">addon 1</option>
+                                    <option value="addon 2">addon 2</option>
+                                    <option value="addon 3">addon 3</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-auto align-self-center">
+                            <div class="addCa_qtyinp">
+                              <div class="row g-0">
+                                <div class="col">
+                                  <label class="mb-2" style="font-size:12px;">Qty</label>
+                                  <div class="input-group input-group-sm">
+                                    <button type="button" class="input-group-text"><i class="bi bi-dash-lg"></i></button>
+                                    <input type="text" class="form-control text-center" value="1">
+                                    <button type="button" class="input-group-text"><i class="bi bi-plus-lg"></i></button>
+                                  </div>
+                                </div>
+                                <div class="col-auto align-self-end">
+                                  <button type="button" class="btn btn-danger" style="width: 30px; height: 30px; padding: 5px; font-size: 14px;"><i class="bi bi-trash3-fill"></i></button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-auto align-self-end">
+                            <p class="text-end mb-2">Rs. 300/-</p>
+                          </div>
+                        </div>
+
+                        <div class="row g-3">
+                          <div class="col">
+                            <div class="mb-2">
+                              <label class="form-label mb-1" for="">
+                                Addon Plans
+                              </label>
+                              <div class="row g-3">
+                                <div class="col-6">
+                                  <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                                    <option value="">- Select type -</option>
+                                    <option value="addon 1">addon 1</option>
+                                    <option value="addon 2">addon 2</option>
+                                    <option value="addon 3">addon 3</option>
+                                  </select>
+                                </div>
+                                <div class="col-6">
+                                  <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                                    <option value="">- Select type -</option>
+                                    <option value="addon 1">addon 1</option>
+                                    <option value="addon 2">addon 2</option>
+                                    <option value="addon 3">addon 3</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-auto align-self-center">
+                            <div class="addCa_qtyinp">
+                              <div class="row g-0">
+                                <div class="col">
+                                  <label class="mb-2" style="font-size:12px;">Qty</label>
+                                  <div class="input-group input-group-sm">
+                                    <button type="button" class="input-group-text"><i class="bi bi-dash-lg"></i></button>
+                                    <input type="text" class="form-control text-center" value="1">
+                                    <button type="button" class="input-group-text"><i class="bi bi-plus-lg"></i></button>
+                                  </div>
+                                </div>
+                                <div class="col-auto align-self-end">
+                                  <button type="button" class="btn btn-danger" style="width: 30px; height: 30px; padding: 5px; font-size: 14px;"><i class="bi bi-trash3-fill"></i></button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-auto align-self-end">
+                            <p class="text-end mb-2">Rs. 150/-</p>
+                          </div>
+                        </div>
+                        <div class="d-flex mt-2">
+                          <div class="me-auto">
+                            <button type="button" class="btn btn-primary"><i class="fa fa-plus" style="font-size:14px;"></i> Add</button>
+                          </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                          <div class="col-auto">
+                            <div class="d-flex align-items-center mb-3">
+                              <label class="form-label form-label text-nowrap mt-1 me-2" style="min-width:85px;" for="">Start Date<sup class="text-danger fs--1">*</sup></label>
+                              <div class="input-group" style="max-width:154px;">
+                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                <input class="form-control datetimepicker" type="text" placeholder="d/m/y" data-options='{"disableMobile":true}' />
+                              </div>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                              <label class="form-label form-label text-nowrap mt-1 me-2" style="min-width:85px;" for="">End Date</label>
+                              <p style="max-width:154px;" class="mb-0">--</p>
+                              <!-- <div class="input-group" style="max-width:154px;">
+                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                <input class="form-control datetimepicker bg-light" type="text" placeholder="d/m/y" data-options='{"disableMobile":true}' disabled />
+                              </div> -->
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="addCa_total">
+                              <div class="row">
+                                <div class="col">
+                                  <p class="text-end mb-1">Total</p>
+                                </div>
+                                <div class="col-auto">
+                                  <div class="total_column">
+                                    <p class="text-end mb-1">5950/-</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col text-end">
+                                  <div class="mb-1">
+                                    <a href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" class="mb-0" style="line-height: 14px;">Apply
+                                      Promo Code</a><br>
+                                    <small class="d-block"><b>(DIWALI250 applied)</b></small>
+                                  </div>
+                                </div>
+                                <div class="col-auto">
+                                  <div class="total_column">
+                                    <p class="text-end mb-1 text-success">-250/-</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <p class="text-end mb-1">Admin Discount</p>
+                                </div>
+                                <div class="col-auto">
+                                  <div class="total_column">
+                                    <p class="text-end mb-1">-150/-</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col">
+                                  <p class="text-end mb-1">Taxable Value</p>
+                                </div>
+                                <div class="col-auto">
+                                  <div class="total_column">
+                                    <p class="text-end mb-1">Rs 5,550/-</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <p class="text-end mb-1">GST @ 18%</p>
+                                </div>
+                                <div class="col-auto">
+                                  <div class="total_column">
+                                    <p class="text-end mb-1">Rs 999/-</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <p class="text-end mb-1">Round Off</p>
+                                </div>
+                                <div class="col-auto">
+                                  <div class="total_column">
+                                    <input type="text" class="form-control form-control-sm text-end" value="1">
+                                    <!-- <p class="text-end mb-1">Rs 1/-</p> -->
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <p class="text-end mb-1"><b>Invoice Value</b></p>
+                                </div>
+                                <div class="col-auto">
+                                  <div class="total_column">
+                                    <p class="text-end mb-1"><b>Rs 6,550/-</b></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-sm-4 col-md-4">
+                        <div class="addCa_plan_box border p-3">
+                          <div class="mt-2 mb-3">
+                            <h2 class="fw-bold text-center mb-0">Gold</h2>
+                            <p class="text-center mb-0">subscription</p>
+                          </div>
+                          <hr>
+                          <div class="mb-3 mt-3">
+                            <div class="row row-cols-sm-2 row-cols-1">
+                              <div class="col">
+                                <div class="d-flex">
+                                  <div class="flex-shrink-0">
+                                    <i class="far fa-clock fs-1"></i>
+                                  </div>
+                                  <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Time Period</p>
+                                    <p class="fw-semi-bold">6 Months</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col">
+                                <div class="d-flex">
+                                  <div class="flex-shrink-0">
+                                    <i class="fas fa-database fs-1"></i>
+                                  </div>
+                                  <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Storage</p>
+                                    <p class="fw-semi-bold">1 GB</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col">
+                                <div class="d-flex">
+                                  <div class="flex-shrink-0">
+                                    <i class="fas fa-user fs-1"></i>
+                                  </div>
+                                  <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Clients</p>
+                                    <p class="fw-semi-bold">10</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col">
+                                <div class="d-flex">
+                                  <div class="flex-shrink-0">
+                                    <i class="fas fa-user-lock fs-1"></i>
+                                  </div>
+                                  <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Client Login</p>
+                                    <p class="fw-semi-bold">7</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col">
+                                <div class="d-flex">
+                                  <div class="flex-shrink-0">
+                                    <i class="far fa-list-alt fs-1"></i>
+                                  </div>
+                                  <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Transactions</p>
+                                    <p class="fw-semi-bold">Unlimited</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col">
+                                <div class="d-flex">
+                                  <div class="flex-shrink-0">
+                                    <i class="fas fa-user-friends fs-1"></i>
+                                  </div>
+                                  <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Employees</p>
+                                    <p class="fw-semi-bold">3</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col w-100">
+                                <div class="d-flex">
+                                  <div class="flex-shrink-0">
+                                    <i class="fas fa-cube fs-1"></i>
+                                  </div>
+                                  <div class="flex-grow-1 ms-2">
+                                    <p class="mb-0 fs--1">Modules</p>
+                                    <ul class="ps-3 mt-1 fw-semi-bold mb-1">
+                                      <li>Task Manager</li>
+                                      <li>File Manager</li>
+                                      <li>E-Commerce</li>
+                                      <li>Live Reports to Clients</li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col w-100 text-center">
+                                <hr>
+                                <h3 class="fw-bold mb-0 mt-3">Rs. 5000</h3>
+                                <p class="mb-1">Price</p>
+                              </div>
+                            </div>
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 my-2">
+                      <div class="d-flex">
+                        <!-- <div class="me-auto">
+                          <button type="button" class="btn btn-primary"><i class="fa fa-plus" style="font-size:14px;"></i> Add</button>
+                        </div> -->
+                        <div class="ms-auto">
+                          <button type="button" class="btn btn-secondary btnPrev" style="min-width:104px;">Previous</button>
+                          <button type="button" class="btn btn-primary btnNext ms-2" style="min-width:104px;">Next</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane fade" id="tab_payment" role="tabpanel">
+                <form action="">
+                  <div class="mt-3">
+                    <div class="row mb-3">
+                      <div class="col-auto">
+                        <label style="min-width:120px;" class="form-label" for="">Invoice Amount</label>
+                      </div>
+                      <div class="col-12 col-sm-6 col-md-4">
+                        <p>Rs. 6,550/-</p>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-auto">
+                        <label style="min-width:120px;" class="form-label" for="">Payment Terms<sup class="text-danger fs--1">*</sup></label>
+                      </div>
+                      <div class="col-12 col-sm-6 col-md-4">
+                        <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                          <option value="">- Select -</option>
+                          <option value="Credit">Credit</option>
+                          <option value="Advance">Advance</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-auto">
+                        <label style="min-width:120px;" class="form-label" for="">Credit Period<sup class="text-danger fs--1">*</sup></label>
+                      </div>
+                      <div class="col-12 col-sm-6 col-md-4">
+                        <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                          <option value="">- Select -</option>
+                          <option value="Days">Days</option>
+                          <option value="Months">Months</option>
+                        </select>
+                      </div>
+                      <div class="col">
+                        <div class="d-flex">
+                          <p class="fw-semi-bold me-3">Payment Due Date</p>
+                          <p>15th January, 2023</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-auto">
+                        <label style="min-width:120px;" class="form-label" for="">Payment Mode<sup class="text-danger fs--1">*</sup></label>
+                      </div>
+                      <div class="col-12 col-sm-6 col-md-4">
+                        <select class="form-select js-choice" id="" size="1" name="" data-options='{"removeItemButton":true,"placeholder":true}'>
+                          <option value="">- Select -</option>
+                          <option value="Online">Online</option>
+                          <option value="Offline">Offline</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 col-sm-6 col-md-3">
+                        <div class="mb-3">
+                          <label class="form-label" for="">Instrument Type</label>
+                          <input class="form-control" id="" type="text">
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6 col-md-3">
+                        <div class="mb-3">
+                          <label class="form-label" for="">Instrument Date</label>
+                          <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            <input class="form-control datetimepicker" type="text" placeholder="d/m/y" data-options='{"disableMobile":true}' />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6 col-md-3">
+                        <div class="mb-3">
+                          <label class="form-label" for="">Instrument ID</label>
+                          <input class="form-control" id="" type="text">
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6 col-md-3">
+                        <div class="mb-3">
+                          <label class="form-label" for="">Instrument Amount</label>
+                          <input class="form-control" id="" type="text">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 my-2">
+                      <div class="d-flex">
+                        <div class="ms-auto">
+                          <button type="button" class="btn btn-secondary btnPrev" style="min-width:104px;">Previous</button>
+                          <button type="submit" class="btn btn-primary btnNext ms-2" style="min-width:104px;">Save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+{% endblock %}

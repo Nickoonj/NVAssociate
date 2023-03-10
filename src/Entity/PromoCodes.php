@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PromoCodesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PromoCodesRepository::class)]
 class PromoCodes
@@ -15,38 +16,49 @@ class PromoCodes
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $promoName = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\NotBlank]
     private ?string $promoDescription = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $promoType = null;
 
     
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $startDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $endDate = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $userType = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $userCategory = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $lifeOfCode = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $usePerUser = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\NotBlank]
     private ?string $termsCondition = null;
     
     #[ORM\Column(type: Types::SMALLINT)]
+    #[Assert\NotBlank]
     private ?int $status = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -56,15 +68,19 @@ class PromoCodes
     private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?bool $displayOnPortal = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $discountAmount = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $maximumDiscountAmount = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $maximumOrderValue = null;
 
     public function __construct()

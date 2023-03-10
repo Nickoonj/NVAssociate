@@ -21,7 +21,7 @@
                   <label class="form-label" style="min-width:180px;" for="">Coupon Code Name</label>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4 {% if form_errors(form.promoName)|length > 0 %} div-form-error{% endif %}">
-                  {{ form_widget(form.promoName, {'attr': {'class': 'form-control mb-3'}}) }}
+                  {{ form_widget(form.promoName, {'attr': {'class': 'form-control mb-3','required':''}}) }}
                   <div class="form-error">
                     {{ form_errors(form.promoName) }}
                  </div>

@@ -26,6 +26,7 @@
 .pagination-limit, .pagination-orderby{
     padding: 0.5rem 2rem;
 }
+/*Loader*/
 .loader{
     position: fixed;
     left: 0;
@@ -35,7 +36,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 99;
+    z-index: 1021;
     background-color: #fff;
 }
-.loader > img{width: 260px;}
+.loader > img{
+    width: 260px;
+}
+.overflow-hidden{
+    overflow: hidden
+}

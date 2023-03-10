@@ -58,7 +58,7 @@ class SubscriptionsController extends AbstractController
     public function create(Request $request, ValidatorInterface $validator): Response
     {
         $subscription  = new Subscriptions();
-        $form = $this->createForm(SubscriptionFormType::class,$subscription);
+        $form = $this->createForm(SubscriptionFormType::class,$subscription, ['attr' => ['class' => 'needs-validation','novalidate'=>'']]);
         
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {            
@@ -76,7 +76,7 @@ class SubscriptionsController extends AbstractController
     {
          $subscription = $this->subscriptionsRepository->find($id);
 
-         $form = $this->createForm(SubscriptionFormType::class, $subscription);
+         $form = $this->createForm(SubscriptionFormType::class, $subscription, ['attr' => ['class' => 'needs-validation','novalidate'=>'']]);
          $form->handleRequest($request);
          if ($form->isSubmitted() && $form->isValid()) {            
             $this->subscriptionsRepository->save($subscription,true);            
